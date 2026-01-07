@@ -24,7 +24,9 @@
           mode="aspectFill"
           @click="previewImage(index)"
         ></image>
-        <view v-else class="relative w-full h-full" @click="previewVideo(index)">
+
+        <!-- @click="previewVideo(index)" -->
+        <view v-else class="relative w-full h-full">
           <video
             :src="formatUrl(typeof item === 'string' ? item : item.url)"
             class="w-full h-full"
@@ -232,7 +234,7 @@
         imageList.value[tempIndex] = result.data.url
         emit('update:modelValue', imageList.value)
         emit('success', { url: result.data.url, index: tempIndex })
-        vk.toast('上传成功')
+        // vk.toast('上传成功')
       } else {
         // 上传失败,移除临时媒体
         imageList.value.splice(tempIndex, 1)
