@@ -5,34 +5,34 @@ import uni from '@dcloudio/vite-plugin-uni'
 import AutoImport from 'unplugin-auto-import/vite'
 import { UnifiedViteWeappTailwindcssPlugin as uvwt } from 'weapp-tailwindcss/vite'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
-
+import autoPagesJson from './js_sdk/a-hua-auto-pages-json'
 // 辅助函数：创建自动运行脚本的 Vite 插件
-// const createAutoRunPlugin = (name, scriptPath, argsOrOptions = []) => {
-//   let hasStarted = false
-//   const buildArgs = () => {
-//     if (Array.isArray(argsOrOptions)) return [scriptPath, ...argsOrOptions]
-//     try {
-//       const b64 = Buffer.from(JSON.stringify(argsOrOptions)).toString('base64')
-//       return [scriptPath, `--options=${b64}`]
-//     } catch {
-//       return [scriptPath]
-//     }
-//   }
-//   return {
-//     name: `auto-run-${name}`,
-//     configureServer() {
-//       if (hasStarted) return
-//       hasStarted = true
-//       console.log(`🚀 启动 ${name} 服务...`)
-//       const child = spawn('node', buildArgs(), {
-//         stdio: 'inherit',
-//         shell: true,
-//         cwd: __dirname
-//       })
-//       child.on('error', err => console.error(`❌ ${name} 启动失败:`, err))
-//       process.on('exit', () => child.kill())
-//     }
-//   }
+const createAutoRunPlugin = (name, scriptPath, argsOrOptions = []) => {
+  let hasStarted = false
+  const buildArgs = () => {
+    if (Array.isArray(argsOrOptions)) return [scriptPath, ...argsOrOptions]
+    try {
+      const b64 = Buffer.from(JSON.stringify(argsOrOptions)).toString('base64')
+      return [scriptPath, `--options=${b64}`]
+    } catch {
+      return [scriptPath]
+    }
+  }
+  return {
+    name: `auto-run-${name}`,
+    configureServer() {
+      if (hasStarted) return
+      hasStarted = true
+      console.log(`🚀 启动 ${name} 服务...`)
+      const child = spawn('node', buildArgs(), {
+        stdio: 'inherit',
+        shell: true,
+        cwd: __dirname
+      })
+      child.on('error', err => console.error(`❌ ${name} 启动失败:`, err))
+      process.on('exit', () => child.kill())
+    }
+  }
 }
 
 // 注意： 打包成 h5 和 app 都不需要开启插件配置
@@ -50,9 +50,7 @@ export default defineConfig({
     // createAutoRunPlugin('Pages自动更新', './js_sdk/set.pages.json.js', {
     //   subPackages: ['pages_sub']
     // }),
-
     autoPagesJson(),
-
     codeInspectorPlugin({
       bundler: 'vite',
       // showSwitch: true,

@@ -94,15 +94,7 @@ export default {
   },
   interceptor: {
     login: function (obj) {
-      uni.vk.showLoading('加载中...')
-      let { vk, params, res } = obj
-      // #ifdef APP
-      vk.myfn.login()
-      // #endif
-      // #ifdef H5
-      uni.vk.hideLoading()
-      vk.navigateTo(params.url)
-      // #endif
+      return true
     },
     fail: function (obj) {
       let { vk, params, res } = obj

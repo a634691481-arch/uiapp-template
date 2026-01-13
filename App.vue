@@ -46,8 +46,6 @@
 
 <style lang="scss">
   @import './uni_modules/vk-uview-ui/index.scss';
-  // @import './common/css/main.css';
-  @import './common/css/icon.css';
 
   @import 'tailwindcss/base';
   @import 'tailwindcss/utilities';
