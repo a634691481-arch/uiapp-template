@@ -8,18 +8,7 @@
     "description": "创建一个 view 标签模板"
   },
 
-  "Submit Button Template": {
-    "prefix": "qqq-----submit",
-    "body": [
-      "<view class=\"flex justify-center py-2 bg-white\">",
-      "  <view class=\"w-[80%] bg-[#67D7E5] py-2 rounded-full flex justify-center\" @click=\"submit\">",
-      "    <view class=\"text-base text-white\">提交</view>",
-      "  </view>",
-      "</view>"
-    ],
-    "description": "创建一个提交按钮模板"
-  },
-
+ 
   "Paging List Template": {
     "prefix": "qqq-----page",
     "body": [
@@ -92,15 +81,6 @@
       "<style lang=\"scss\" scoped></style>"
     ],
     "description": "创建完整的分页列表页面模板"
-  },
-
-
-  "Pay Button Template": {
-    "prefix": "qqq-----botton",
-    "body": [
-      "<view class=\"py-1.5 text-sm text-white px-5 rounded-lg bg-[#67D7E5]\" @click=\"goPay\">去支付</view>"
-    ],
-    "description": "创建一个去支付按钮模板"
   },
 
   "Icon Text Template": {
@@ -217,5 +197,41 @@
       "></u-loading>"
     ],
     "description": "创建一个加载动画模板"
-  }
+  },
+  "Parse Template": {
+    "prefix": "qqq-----parse",
+    "body": [
+      "<u-parse",
+      "  :html=\"state.${1:htmlContent}\"",
+      "  lazy-load",
+      "  selectable",
+      "  show-with-animation",
+      "  use-cache",
+      "></u-parse>"
+    ],
+    "description": "创建一个富文本解析模板"
+  },
+  "Button Template": {
+    "prefix": "qqq-----button",
+    "body": [
+      "<u-button size=\"${1:default}\" shape=\"${2:circle}\" :plain=\"${3:false}\" :hair-line=\"${4:false}\" type=\"${5:primary}\" class=\"${6:w-full}\" @click=\"${7:handleClick}\">",
+      "  ${8:按钮文字}",
+      "</u-button>"
+    ],
+    "description": "创建一个按钮模板"
+  },
+  "ottom Button Bar Template": {
+    "prefix": "qqq-----bottom-button",
+    "body": [
+      "<view class=\"pb-env bg-white shadow-md\">",
+      "  <view class=\"grid grid-cols-1 gap-3 px-3 py-2 pb-0\">",
+      "    <u-button size=\"default\" shape=\"circle\" :plain=\"false\" :hair-line=\"false\" type=\"primary\" class=\"w-full\" @click=\"${1:handleClick}\">",
+      "      ${2:按钮文字}",
+      "    </u-button>",
+      "  </view>",
+      "</view>"
+    ],
+    "description": "创建一个底部固定按钮栏模板"
+  },
+  
 }
