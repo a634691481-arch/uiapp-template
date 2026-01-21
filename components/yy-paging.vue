@@ -10,6 +10,7 @@
     @onRefresh="onRefresh"
     @scrolltolower="scrolltolower"
     @scrollIntoViewById="scrollIntoViewById"
+    @scrollToTop="scrollToTop"
     :useVirtualList="useVirtualList"
     :useInnerList="useInnerList"
     :cellKeyName="cellKeyName"
@@ -245,6 +246,9 @@
   const doChatRecordLoadMore = () => {
     paging.value.doChatRecordLoadMore()
   }
+  const scrollToTop = () => {
+    paging.value.scrollToTop()
+  }
 
-  defineExpose({ reload, complete, scrollIntoViewById, refresh, setLocalPaging })
+  defineExpose({ reload, complete, scrollIntoViewById, refresh, setLocalPaging, scrollToTop })
 </script>

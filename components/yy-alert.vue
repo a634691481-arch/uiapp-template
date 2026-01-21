@@ -28,30 +28,69 @@
 </template>
 
 <script setup>
-  const emit = defineEmits(['alertConfirm'])
+  /**
+   * 使用示例：
+   * 1. 基础用法 (仅文字):
+   *    alertRef.value.config('这是一条提示信息')
+   *
+   * 2. 完整用法 (自定义回调):
+   *    alertRef.value.config({
+   *      title: '删除确认',
+   *      describe: '确定要删除这条记录吗？',
+   *      cancel: '取消',
+   *      confirm: '确定',
+   *      confirmFun: () => { console.log('点击了确定') },
+   *      cancelFun: () => { console.log('点击了取消') }
+   *    })
+   *
+   * 3. 对应 index.vue 里的跳转用法:
+   *    alertRef.value.config({
+   *      confirmFun: () => { window.location.href = '...' }
+   *    })
+   */
 
-  const options = reactive({
+  // 默认配置，用于重置状态
+  const defaultOptions = {
     show: false,
     title: '温馨提示',
     describe: '确定要执行此操作吗？',
-    // cancel: '取消',
-    // confirm: '确定',
+    cancel: '', // 传值即显示取消按钮
+    confirm: '确定',
     cancelColor: '#5C6068',
     confirmColor: '#FF3A56',
-    eventType: 'confirm'
-  })
+    confirmFun: null,
+    cancelFun: null
+  }
+
+  const options = reactive({ ...defaultOptions })
 
   const close = () => {
-    Object.assign(options, { show: false })
+    if (typeof options.cancelFun === 'function') {
+      options.cancelFun()
+    }
+    options.show = false
   }
 
   const confirm = () => {
-    emit('alertConfirm', options.eventType)
-    Object.assign(options, { show: false })
+    if (typeof options.confirmFun === 'function') {
+      options.confirmFun()
+    }
+    options.show = false
   }
 
   const config = opts => {
-    Object.assign(options, opts)
+    // 1. 先重置为默认值，防止状态污染
+    Object.assign(options, defaultOptions)
+
+    // 2. 根据参数类型进行赋值
+    if (typeof opts === 'string') {
+      options.describe = opts
+    } else {
+      Object.assign(options, opts)
+    }
+
+    // 3. 自动开启显示
+    options.show = true
   }
 
   defineExpose({
