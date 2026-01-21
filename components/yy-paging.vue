@@ -32,6 +32,7 @@
     auto-show-back-to-top
     :safe-area-inset-bottom="false"
     :use-safe-area-placeholder="false"
+    refresher-vibrate
   >
     <!-- auto-show-system-loading -->
     <!--  -->
