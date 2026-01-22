@@ -50,27 +50,26 @@
       "</template>",
       "",
       "<script setup>",
-      "  // 状态",
       "  const state = ref({",
       "    isScroll: false,",
       "    dataList: [],",
       "    title: '${1:页面标题}'",
       "  })",
       "",
-      "  // 组件引用",
       "  const paging = ref()",
       "",
-      "  // 页面生命周期",
       "  onLoad(options => {",
       "    console.log('🚀 页面加载:', options)",
       "  })",
       "",
-      "  // 滚动事件",
+      "  onShow(options => {",
+      "    console.log('🚀 页面加载:', options)",
+      "  })",
+      "",
       "  const scroll = e => {",
       "    state.value.isScroll = e.detail.scrollTop > 0",
       "  }",
       "",
-      "  // 列表查询",
       "  const queryList = (page, limit) => {",
       "    setTimeout(() => {",
       "      paging.value?.complete([1])",
@@ -133,7 +132,8 @@
   "Input Template": {
     "prefix": "qqq-----input",
     "body": [
-      "<u-input v-model=\"state.formData.${1:fieldName}\" type=\"${2:text}\" placeholder=\"${4:请输入}\" border clearable input-align=\"left\" maxlength=\"${3:5}\" />"
+
+      "<u-input v-model=\"state.formData.${1:fieldName}\" type=\"${2|text,select,password,textarea,number|}\" placeholder=\"${4:请输入}\" border clearable auto-height input-align=\"left\" maxlength=\"${3:5}\" />"
     ],
     "description": "创建一个输入框模板"
   },
@@ -234,4 +234,35 @@
     "description": "创建一个底部固定按钮栏模板"
   },
   
+  "Alert Tips Template": {
+    "prefix": "qqq-----alert-tips",
+    "body": [
+      "<u-alert-tips :show-icon=\"true\" type=\"${1:warning}\" description=\"${2:仅展示当日的咨询预约情况}\" :close-able=\"false\" ></u-alert-tips>"
+    ],
+    "description": "创建一个警告提示模板"
+  },
+  "Tag Template": {
+    "prefix": "qqq-----tag",
+    "body": [
+      "<u-tag text=\"${1:标签文字}\" type=\"${2:primary}\" mode=\"${3|dark,light,plain|}\" class=\"!rounded-full\" size=\"${4|default,mini|}\" />"
+    ],
+    "description": "创建一个标签模板"
+  },
+ 
+  "Picker Template": {
+    "prefix": "qqq-----picker-region",
+    "body": [
+      "<u-picker v-model=\"state.${1:showPickerRegion}\" mode=\"${2:region}\" @confirm=\"${3:pickerConfirmRegion}\" ></u-picker>"
+    ],
+    "description": "创建一个选择器模板"
+  },
+  
+  "Picker Time Template": {
+    "prefix": "qqq-----picker-time",
+    "body": [
+      "<u-picker v-model=\"state.${1:showPickerTime}\" mode=\"${2:time}\" @confirm=\"${3:pickerConfirmTime}\" ></u-picker>"
+    ],
+    "description": "创建一个时间选择器模板"
+  },
+
 }
