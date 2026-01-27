@@ -264,5 +264,28 @@
     ],
     "description": "创建一个时间选择器模板"
   },
-
+  "Select Template": {
+    "prefix": "qqq-----select",
+    "body": [
+      "<u-select",
+      "  v-model=\"state.${1:showSelect}\"",
+      "  :list=\"${2:state.selectList}\"",
+      "  mode=\"single-column\"",
+      "  label-name=\"label\"",
+      "  value-name=\"value\"",
+      "  child-name=\"children\"",
+      "  confirm-text=\"确定\"",
+      "  cancel-text=\"取消\"",
+      "  @confirm=\"${3:selectConfirm}\"",
+      "></u-select>"
+    ],
+    "description": "创建一个列选择器模板"
+  },
+  "Count To Template": {
+    "prefix": "qqq-----count-to",
+    "body": [
+      "<u-count-to :start-val=\"0\" :end-val=\"500\" ref=\"countTo\" bold></u-count-to>"
+    ],
+    "description": "创建一个计数动画模板"
+  }
 }
