@@ -16,8 +16,7 @@
           title-color="#fff"
           isBack
           backIconColor="#fff"
-        >
-        </u-navbar>
+        ></u-navbar>
       </template>
       <template #empty>
         <yy-empty></yy-empty>
@@ -28,7 +27,7 @@
       <template #bottom>
         <view class="h-11"></view>
       </template>
-      <view class="flex flex-col px-3"> </view>
+      <view class="flex flex-col px-3"></view>
     </yy-paging>
     <!--  -->
     <!--  -->

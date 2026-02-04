@@ -245,11 +245,12 @@ export default {
 			// 如果有配置pagePath属性，使用uni.switchTab进行跳转
 			if (this.list[index].pagePath) {
 				let url = this.list[index].pagePath;
-				uni.switchTab({
+				vk.switchTab({
 					url,
 					fail: (err) => {
 						if (err && err.errMsg && err.errMsg.indexOf("tabBar") > -1) {
-							uni.navigateTo({ url });
+							vk.navigateTo({ url });
+							
 						} else {
 							console.error(err);
 						}

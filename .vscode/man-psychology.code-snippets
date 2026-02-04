@@ -119,15 +119,22 @@
     ],
     "description": "创建一个单选组模板"
   },
-  "Checkbox Group Template": {
+ 
+  "Checkbox Group List Template": {
     "prefix": "qqq-----checkbox",
     "body": [
-      "<u-checkbox-group v-model=\"state.formData.gender\" class=\"flex gap-6\">",
-      "  <u-checkbox name=\"男\" active-color=\"#67D7E5\">男</u-checkbox>",
-      "  <u-checkbox name=\"女\" active-color=\"#67D7E5\">女</u-checkbox>",
+      "<u-checkbox-group v-model=\"state.${1:selectedProducts}\"  @change=\"${2:onProductChange}\">",
+      "  <u-checkbox",
+      "    v-for=\"(product, index) in state.${3:productList}\"",
+      "    :key=\"index\"",
+      "    :name=\"product.${4:name}\"",
+      "    active-color=\"#67D7E5\"",
+      "  >",
+      "    <text class=\"text-sm font-medium text-gray-600\">{{ product.${4:name}  }}元</text>",
+      "  </u-checkbox>",
       "</u-checkbox-group>"
     ],
-    "description": "创建一个复选组模板"
+    "description": "创建一个带 v-for 的复选组模板"
   },
   "Input Template": {
     "prefix": "qqq-----input",
@@ -214,7 +221,7 @@
   "Button Template": {
     "prefix": "qqq-----button",
     "body": [
-      "<u-button size=\"${1:default}\" shape=\"${2:circle}\" :plain=\"${3:false}\" :hair-line=\"${4:false}\" type=\"${5:primary}\" class=\"${6:w-full}\" @click=\"${7:handleClick}\">",
+      "<u-button size=\"${1:default}\" shape=\"${2:circle}\" type=\"${5:primary}\" class=\"${6:w-full}\" @click=\"${7:handleClick}\">",
       "  ${8:按钮文字}",
       "</u-button>"
     ],
@@ -287,5 +294,36 @@
       "<u-count-to :start-val=\"0\" :end-val=\"500\" ref=\"countTo\" bold></u-count-to>"
     ],
     "description": "创建一个计数动画模板"
-  }
+  },
+
+  "Snapdom Screenshot Template": {
+    "prefix": "qqq-----screenshot",
+    "body": [
+      "  const ${1:downloadScreenshot} = async () => {",
+      "    try {",
+      "      vk.showLoading('生成图片中...') ",
+      "",
+      "      const element = document.getElementById('${2:user-info-card}')",
+      "      if (!element) {",
+      "        throw new Error('未找到要截图的元素')",
+      "      }",
+      "",
+      "      const { snapdom } = await import('https://unpkg.com/@zumer/snapdom/dist/snapdom.mjs')",
+      "      const result = await snapdom(element, {",
+      "        download: true,",
+      "        filename: `${3:截图}_${Date.now()}.png`,",
+      "        backgroundColor: '#fff'",
+      "      })",
+      "",
+      "      await result.download()",
+      "      vk.toast('下载成功')",
+      "    } catch (error) {",
+      "      vk.toast(error || '截图失败,请重试')",
+      "    } finally {",
+      "      vk.hideLoading()",
+      "    }",
+      "  }"
+    ],
+    "description": "使用 snapdom 动态截图下载功能"
+  },
 }
