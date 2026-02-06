@@ -40,7 +40,7 @@
       "        <yy-nomore></yy-nomore>",
       "      </template>",
       "      <template #bottom>",
-      "        <!-- <view class=\"h-11\"></view> -->",
+      "        <!-- <view class=\"h-24\"></view> -->",
       "      </template>",
       "      <view class=\"flex flex-col px-3\">",
       "        $0",
