@@ -26,12 +26,7 @@
     "jsx": "preserve",
     "importHelpers": true,
     "experimentalDecorators": true,
-    "baseUrl": ".",
     "types": ["@dcloudio/types", "@types/html5plus", "@types/uni-app"],
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"]
-    },
     "lib": ["esnext", "dom", "dom.iterable"]
   },
   "vueCompilerOptions": {
