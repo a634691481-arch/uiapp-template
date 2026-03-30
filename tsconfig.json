@@ -2,49 +2,41 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
-    "strict": false,
+    "moduleResolution": "bundler",
+    "strict": true,
+    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "inlineSources": false,
+    "noEmit": true,
+    "removeComments": true,
+    "sourceMap": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "preserveWatchOutput": true,
     "jsx": "preserve",
     "importHelpers": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "@dcloudio/types",
-      "@types/html5plus",
-      "@types/uni-app"
-    ],
+    "types": ["@dcloudio/types", "@types/html5plus", "@types/uni-app"],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/components/*": [
-        "./src/components/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable"]
   },
   "vueCompilerOptions": {
     "globalTypesPath": "./typings/auto-imports.d.ts"
   },
-  "include": [
-    "src/**/*",
-    "pages/**/*",
-    "components/**/*",
-    "typings/**/*",
-    "*.vue",
-    "*.ts",
-    "*.js"
-, "js_sdk/set.components.prefix.js", "js_sdk/set.images.prefix.js", "js_sdk/set.pages.json.js"  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.js"
-  ]
+  "include": ["src/**/*", "pages/**/*", "components/**/*", "typings/**/*", "*.vue", "*.ts", "*.js"],
+  "exclude": ["node_modules", "dist", "**/*.js"]
 }

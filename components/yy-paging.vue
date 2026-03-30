@@ -20,6 +20,7 @@
     :show-refresher-when-reload="showRefresherWhenReload"
     :loading-more-enabled="loadingMoreEnabled"
     :use-page-scroll="usePageScroll"
+    created-reload
     :preloadPage="preloadPage"
     :refresherEnabled="refresherEnabled"
     scroll-with-animation
