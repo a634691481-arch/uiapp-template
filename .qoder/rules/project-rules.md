@@ -1,0 +1,111 @@
+# Vue 组件规范
+
+- 所有 Vue 组件必须使用 <script setup lang="ts"> 语法糖
+- 组件文件命名使用 PascalCase，页面文件使用 kebab-case
+- 组件必须包含明确的类型定义（interface 或 type）
+- 禁止使用 any 类型，使用 unknown 代替或在必要时添加明确类型注解
+- 自定义组件统一使用 yy- 前缀命名（如 yy-paging、yy-empty、yy-loading）
+- 第三方 UI 组件使用 u- 前缀（如 u-button、u-navbar）
+
+# z-paging 分页组件使用规范
+
+- 列表页面必须使用 <yy-paging> 或 <z-paging> 组件
+- 必须配置 :auto="false" 手动控制数据加载
+- 必须实现 @query 回调函数处理分页逻辑
+- 使用 paging.value?.complete(data) 完成数据加载
+- 分页参数统一使用 page 和 pageSize
+- 空数据必须显示 <yy-empty> 组件
+- 无更多数据必须显示 <yy-nomore> 组件
+
+# vk-unicloud 快速开发框架使用规范
+
+- API 调用统一使用 vk.api.xxx() 方式
+- 全局状态使用 vk.vuex 管理
+- 存储使用 vk.setStorageSync() / vk.getStorageSync()
+- 提示使用 vk.toast() / vk.alert() / vk.showLoading() / vk.hideLoading()
+- 路由跳转使用 vk.redirectTo() / vk.reLaunch() / vk.navigateTo()
+- 用户信息获取使用 vk.vuex.dispatch('$user/getUserInfo')
+
+# vk-uview-ui 组件库使用规范
+
+- 统一使用 u- 前缀的组件（如 u-button, u-navbar, u-icon）
+- 优先使用组件库提供的工具函数和组件
+- 表单组件必须添加必要的验证规则
+- 按钮必须设置 hover-class 或 hover-class="none"
+
+# 代码风格规范
+
+- 使用单引号而非双引号
+- 对象最后一个属性必须有尾随逗号
+- 缩进使用 2 个空格
+- 方法必须使用 function 关键字定义，禁止使用箭头函数：function methodName() {}
+- 每个 function 方法上方必须添加行内注释说明用途：// 获取用户信息
+- 使用 const 和 let，禁止使用 var
+- 异步函数必须使用 async/await 语法
+- 代码结构必须清晰简洁，避免过度嵌套和复杂逻辑
+- 单一职责原则：每个函数只做一件事，函数长度不超过 50 行
+- 提前返回：使用 guard clauses 减少嵌套层级
+- 变量命名要有意义，避免使用 a、b、c 等无意义命名
+
+# 状态管理规范
+
+- 使用 ref() 定义响应式变量，并添加明确类型注解
+- 复杂对象状态使用 reactive() 或 interface 定义
+- 组件引用使用 ref() 并添加类型：const paging = ref<InstanceType<typeof ZPaging>>()
+
+# API 调用规范
+
+- 所有 API 接口统一定义在 apis/http.api.js 文件中
+- 调用方式：api.xxx(params)，例如 api.getUserInfo(params)
+- 所有 API 调用必须使用 try-catch 或 Promise 链处理错误
+- API 参数必须明确类型，禁止传递 undefined
+- 关键操作（登录、支付等）必须添加 loading 提示
+- API 返回数据必须进行空值安全检查
+- API 方法命名使用驼峰命名法（camelCase）
+- 每个 API 方法上方必须添加注释说明用途
+
+# 页面布局规范
+
+- 必须使用 Tailwind CSS 原子类进行布局（如 flex、items-center、w-full、p-4 等）
+- 复杂样式或自定义样式使用 SCSS 并添加 scoped
+- 避免内联样式，优先使用 Tailwind 类名
+- 页面根元素必须包含语义化 class
+- 响应式布局使用 Tailwind 响应式前缀（如 sm:、md:、lg:）
+- 颜色值使用 Tailwind 默认色板或自定义主题色
+
+# 安全与最佳实践
+
+- 禁止在代码中硬编码敏感信息（密钥、Token 等）
+- 用户输入必须进行校验和转义
+- 涉及金额计算使用整数（分）避免浮点精度问题
+- 列表渲染必须使用 :key 且 key 值必须唯一
+- 组件卸载时必须清理定时器和事件监听
+
+# 文件组织规范
+
+- 页面文件放在 pages 目录下
+- 公共组件放在 components 目录下
+- 工具函数放在 common/function 或 common/utils 目录
+- 样式文件放在 common/css 目录
+- API 定义放在 apis 目录
+
+# 公共方法规范
+
+- 所有公共方法统一定义在 common/function/myPubFunction.js 文件中
+- 调用方式：vk.myfn.xxx()，例如 vk.myfn.maskPhoneNumber(phone)
+- 公共方法命名使用驼峰命名法（camelCase）
+- 每个公共方法上方必须添加注释说明用途
+- 方法要单一职责，避免过于复杂
+
+# Git 提交规范
+
+- 提交信息格式：type: description
+- type 可选：feat（新功能）、fix（修复）、docs（文档）、style（样式）、refactor（重构）、perf（性能）、test（测试）、chore（构建）
+- 描述使用中文，简洁明了
+
+# 禁止行为
+
+- 不要主动创建 .md 文档文件（除非明确要求）
+- 不要删除用户已有的代码逻辑
+- 不要在未确认的情况下执行危险操作（如删除文件）
+- 不要忽略 TypeScript 类型错误
