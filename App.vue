@@ -4,10 +4,9 @@
   export default {
     methods: {},
     // 监听 - 页面404
-    // 监听 - 页面404
     onPageNotFound: function (e) {
       uni.redirectTo({
-        url: config.error.url
+        url: config.error.url,
       })
     },
     onLaunch: function (options) {
@@ -19,7 +18,7 @@
         console.log(
           `%c vk-client %c v${version} `,
           'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
-          'background:#007aff ;padding: 1px; border-radius: 0 3px 3px 0;  color: #fff; font-weight: bold;'
+          'background:#007aff ;padding: 1px; border-radius: 0 3px 3px 0;  color: #fff; font-weight: bold;',
         )
         // #endif
         console.log('App Launch')
@@ -32,39 +31,20 @@
 
     onShow: function () {
       // #ifdef APP-PLUS
-
       uni.vk.vuex.dispatch('$app/getInitData')
-      //
-
       // #endif
     },
     onHide: function () {
       if (config.debug) console.log('App Hide')
-    }
+    },
   }
 </script>
 
 <style lang="scss">
   @import './uni_modules/vk-uview-ui/index.scss';
+  @import './common/css/common.scss';
 
   @import 'tailwindcss/base';
   @import 'tailwindcss/utilities';
   @import 'tailwindcss/components';
-
-  .page {
-    background-color: #f7f7f7 !important;
-    font-family: sans-serif !important;
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-  }
-
-  .pb-env {
-    padding-bottom: calc(env(safe-area-inset-bottom) / 2);
-  }
-
-  @font-face {
-    font-family: 'oxanium';
-    src: url('font/Oxanium-Bold.ttf');
-  }
 </style>

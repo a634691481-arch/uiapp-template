@@ -9,13 +9,7 @@
       <view class="flex items-center justify-center">
         <button open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
           <view class="size-[3.75rem] bg-gray-50 overflow-hidden rounded-full border">
-            <u-image
-              width="100%"
-              height="100%"
-              :src="funImage(state?.userInfo?.avatar || '')"
-              mode="aspectFill"
-              class="size-full"
-            ></u-image>
+            <u-image width="100%" height="100%" :src="funImage(state?.userInfo?.avatar || '')" mode="aspectFill" class="size-full"></u-image>
           </view>
         </button>
       </view>
@@ -23,14 +17,7 @@
       <view class="flex items-center justify-between gap-10">
         <view class="text-base font-medium text-gray-800">姓名</view>
 
-        <u-input
-          v-model="state.userInfo.nickname"
-          type="nickname"
-          placeholder="请输入姓名"
-          clearable
-          class="!text-right"
-          input-align="right"
-        ></u-input>
+        <u-input v-model="state.userInfo.nickname" type="nickname" placeholder="请输入姓名" clearable class="!text-right" input-align="right"></u-input>
       </view>
       <view class="flex items-center justify-between gap-10">
         <view class="text-base font-medium text-gray-800">性别</view>
@@ -53,18 +40,18 @@
   const props = defineProps({
     modelValue: {
       type: Boolean,
-      default: false
+      default: false,
     },
     userInfo: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   })
   const state = ref({
     userInfo: {},
     action: import.meta.env.VITE_UPLOAD_BASE_URL,
     baseurl: import.meta.env.VITE_API_BASE_URL,
-    maxSize: 3 // 3M
+    maxSize: 3, // 3M
   })
 
   watch(
@@ -73,13 +60,13 @@
       state.value.userInfo = {
         nickname: newValue.nickname || '',
         gender: newValue.gender == 1 ? '男' : '女',
-        avatar: newValue.avatar || ''
+        avatar: newValue.avatar || '',
       }
     },
     {
       immediate: true,
-      deep: true
-    }
+      deep: true,
+    },
   )
 
   const confirmSubmission = async () => {
@@ -88,7 +75,7 @@
     await api.updateUserInfo({
       nickname,
       avatar: avatar,
-      gender: gender === '男' ? 1 : 0
+      gender: gender === '男' ? 1 : 0,
     })
 
     emit('update:modelValue', false)
@@ -117,8 +104,8 @@
       filePath: avatarUrl,
       name: 'file',
       header: {
-        token: uni.vk.getStorageSync('uni_id_token')
-      }
+        token: uni.vk.getStorageSync('uni_id_token'),
+      },
     })
 
     const result = JSON.parse(uploadData)

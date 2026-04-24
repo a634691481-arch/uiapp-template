@@ -7,6 +7,7 @@
       :auto="false"
       @scroll="scroll"
       :refresher-enabled="true"
+      :showRefresherWhenReload="true"
     >
       <template #top>
         <u-navbar
@@ -24,43 +25,34 @@
       <template #loadingMoreNoMore>
         <yy-nomore></yy-nomore>
       </template>
-      <template #bottom>
-        <!-- <view class="h-[4.5rem]"></view> -->
-      </template>
+      <template #bottom></template>
       <view class="flex flex-col px-3"></view>
     </yy-paging>
   </view>
 </template>
 
-<script setup lang="ts">
-  interface State {
-    isScroll: boolean
-    dataList: any[]
-    title: string
-  }
-
-  const state = ref<State>({
+<script setup>
+  const state = ref({
     isScroll: false,
     dataList: [],
-    title: '页面标题'
+    title: '页面标题',
   })
 
   const paging = ref()
 
-  onLoad((options: Record<string, any>) => {
+  onLoad(options => {
     console.log('🚀 页面加载:', options)
   })
 
-  onShow((options: Record<string, any>) => {
+  onShow(options => {
     console.log('🚀 页面加载:', options)
   })
 
-  function scroll(e: { detail: { scrollTop: number } }) {
+  function scroll(e) {
     state.value.isScroll = e.detail.scrollTop > 0
   }
 
-  async function queryList(page: number, limit: number) {
-    console.log('🚀 ~ :63 ~ queryList ~ limit:', page, limit)
+  async function queryList(page, limit) {
     await new Promise(resolve => setTimeout(resolve, 1000))
     paging.value?.complete([1])
   }

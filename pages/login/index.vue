@@ -7,15 +7,16 @@
       :auto="false"
       @scroll="scroll"
       :refresher-enabled="true"
+      :showRefresherWhenReload="true"
     >
       <template #top>
         <u-navbar
-          :background="{ backgroundColor: state.isScroll ? '#18C9D9' : '#18C9D9' }"
+          :background="{ backgroundColor: state.isScroll ? '#fff' : '#fff' }"
           :title="state.title"
           :border-bottom="false"
-          title-color="#fff"
+          title-color="#000"
           isBack
-          backIconColor="#fff"
+          backIconColor="#000"
         ></u-navbar>
       </template>
       <template #empty>
@@ -24,47 +25,36 @@
       <template #loadingMoreNoMore>
         <yy-nomore></yy-nomore>
       </template>
-      <template #bottom>
-        <view class="h-11"></view>
-      </template>
+      <template #bottom></template>
       <view class="flex flex-col px-3"></view>
     </yy-paging>
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <yy-tabbar></yy-tabbar>
   </view>
 </template>
 
 <script setup>
-  // 状态
   const state = ref({
     isScroll: false,
     dataList: [],
-    title: '首页'
+    title: '页面标题',
   })
-  // vk.setStorageSync('uni_id_token', res.data.token)
-  // vk.setStorageSync('uni_id_token_expired', Date.now() + 365 * 24 * 60 * 60 * 1000) // 过期时间设置为一年后
 
-  // 组件引用
   const paging = ref()
-  const alert = ref()
 
-  // 页面生命周期（Uni-App）
   onLoad(options => {
-    console.log('🚀 ~ :55 ~ options:', options)
+    console.log('🚀 页面加载:', options)
   })
 
-  // 滚动事件
-  const scroll = e => {
+  onShow(options => {
+    console.log('🚀 页面加载:', options)
+  })
+
+  function scroll(e) {
     state.value.isScroll = e.detail.scrollTop > 0
   }
-  // 列表查询
-  const queryList = (page, limit) => {
-    console.log('🚀 ~ :58 ~ queryList ~ page, limit:', page, limit)
-    setTimeout(() => {
-      paging.value?.complete([1])
-    }, 1000)
+
+  async function queryList(page, limit) {
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    paging.value?.complete([1])
   }
 </script>
 
