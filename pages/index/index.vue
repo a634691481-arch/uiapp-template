@@ -75,10 +75,13 @@
           <u-button type="primary" size="medium" :ripple="true">primary 按钮</u-button>
           <view class="flex gap-2 mt-2">
             <u-button type="success" size="mini">成功</u-button>
-            <u-button type="success" size="mini">成功</u-button>
             <u-button type="warning" size="mini">警告</u-button>
             <u-button type="error" size="mini">错误</u-button>
           </view>
+          <u-radio-group v-model="state.formData.gender" :active-color="primaryColor" class="flex gap-6">
+            <u-radio name="男">男</u-radio>
+            <u-radio name="女">女</u-radio>
+          </u-radio-group>
         </view>
         <u-tag text="标签文字" type="primary" mode="dark" class="!rounded-full" size="default" />
       </view>
@@ -91,9 +94,16 @@
     isScroll: false,
     dataList: [],
     title: '主题色示例',
+    formData: {
+      gender: '',
+    },
   })
 
   const paging = ref()
+
+  // 主题主色（供 uView 组件属性使用）
+  const primaryColor = 'var(--color-primary)'
+  console.log('🚀 ~ :106 ~ primaryColor:', primaryColor)
 
   onLoad(options => {
     console.log('🚀 页面加载:', options)

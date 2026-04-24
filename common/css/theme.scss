@@ -6,12 +6,19 @@
 // --------------------------------
 // 1. 基础主题色（核心修改区域）
 // --------------------------------
+// const primaryColor = 'var(--color-primary)'
 
 // 主色
-$theme-primary: #ff4444;
-$theme-primary-light: #ff7777;
-$theme-primary-dark: #cc3333;
-$theme-primary-disabled: #ffaaaa;
+$theme-primary: #2979ff;
+$theme-primary-light: #5b9aff;
+$theme-primary-dark: #1a5fd9;
+$theme-primary-disabled: #a0cfff;
+
+// 增加主题色 #339933
+// $theme-primary: #339933;
+// $theme-primary-light: #55b955;
+// $theme-primary-dark: #227722;
+// $theme-primary-disabled: #a0c8a0;
 
 // 辅色
 $theme-secondary: #555555;
@@ -91,31 +98,32 @@ $uni-border-color: $theme-border;
 
 // --------------------------------
 // 4. uView UI 主题覆盖
+// 使用 mix() 自动生成变体，换主色时无需手动调整
 // --------------------------------
 $u-type-primary: $theme-primary;
-$u-type-primary-light: $theme-primary-light;
-$u-type-primary-disabled: $theme-primary-disabled;
-$u-type-primary-dark: $theme-primary-dark;
+$u-type-primary-light: mix(#ffffff, $theme-primary, 92%);
+$u-type-primary-disabled: mix(#ffffff, $theme-primary, 55%);
+$u-type-primary-dark: mix(#000000, $theme-primary, 12%);
 
 $u-type-warning: $theme-warning;
-$u-type-warning-disabled: #fcbd71;
-$u-type-warning-dark: #f29100;
-$u-type-warning-light: #fdf6ec;
+$u-type-warning-disabled: mix(#ffffff, $theme-warning, 55%);
+$u-type-warning-dark: mix(#000000, $theme-warning, 12%);
+$u-type-warning-light: mix(#ffffff, $theme-warning, 92%);
 
 $u-type-success: $theme-success;
-$u-type-success-disabled: #71d5a1;
-$u-type-success-dark: #18b566;
-$u-type-success-light: #dbf1e1;
+$u-type-success-disabled: mix(#ffffff, $theme-success, 55%);
+$u-type-success-dark: mix(#000000, $theme-success, 12%);
+$u-type-success-light: mix(#ffffff, $theme-success, 92%);
 
 $u-type-error: $theme-error;
-$u-type-error-disabled: #fab6b6;
-$u-type-error-dark: #dd6161;
-$u-type-error-light: #fef0f0;
+$u-type-error-disabled: mix(#ffffff, $theme-error, 55%);
+$u-type-error-dark: mix(#000000, $theme-error, 12%);
+$u-type-error-light: mix(#ffffff, $theme-error, 92%);
 
 $u-type-info: $theme-info;
-$u-type-info-disabled: #c8c9cc;
-$u-type-info-dark: #82848a;
-$u-type-info-light: #f4f4f5;
+$u-type-info-disabled: mix(#ffffff, $theme-info, 55%);
+$u-type-info-dark: mix(#000000, $theme-info, 12%);
+$u-type-info-light: mix(#ffffff, $theme-info, 92%);
 
 $u-main-color: #303133;
 $u-content-color: #606266;

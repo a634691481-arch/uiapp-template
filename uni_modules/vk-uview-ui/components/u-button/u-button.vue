@@ -149,12 +149,12 @@ export default {
 		// 按钮是否镂空
 		plain: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		// 是否禁止状态
 		disabled: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		// 是否加载中
 		loading: {
