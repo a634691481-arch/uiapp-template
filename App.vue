@@ -2,7 +2,6 @@
   import config from '@/app.config.js'
   import { version } from './package.json'
   export default {
-    methods: {},
     // 监听 - 页面404
     onPageNotFound: function (e) {
       uni.redirectTo({
@@ -42,9 +41,10 @@
 
 <style lang="scss">
   @import './uni_modules/vk-uview-ui/index.scss';
-  @import './common/css/core.scss';
 
   @import 'tailwindcss/base';
   @import 'tailwindcss/utilities';
   @import 'tailwindcss/components';
+
+  @import './common/css/core.scss';
 </style>
