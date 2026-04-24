@@ -1,0 +1,243 @@
+<template>
+  <view class="a-icon-svg" :style="[boxStyle]">
+    <web-view v-if="isShow" class="__wh-0" :id="_uid" @message="changeMessage"
+      src="/uni_modules/icon-park/hybrid/html/index.html" />
+    <image :src="png"  class="a-icon-pack-image" :style="[boxStyle]" :mode="mode" :fade-show="fadeShow"
+      :lazy-load="lazyLoad" :show-menu-by-longpress="showMenuByLongpress" :draggable="draggable" @error="changeError"
+      @load="changeLoad" />
+  </view>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        _uid: this.uuid(32) as string,
+        png: "" as any | null,
+        webviewContext: null as WebviewContext | null,
+        isShow: true as boolean,
+        rtl: false,
+        colors1: {
+          outline: {
+            fill: '#333',
+            background: 'transparent'
+          },
+          filled: {
+            fill: '#333',
+            background: '#FFF'
+          },
+          twoTone: {
+            fill: '#333',
+            twoTone: '#2F88FF'
+          },
+          multiColor: {
+            outStrokeColor: '#333',
+            outFillColor: '#2F88FF',
+            innerStrokeColor: '#FFF',
+            innerFillColor: '#43CCF8'
+          }
+        },
+        prefix: 'i'
+
+      }
+    },
+    props: {
+      size: {
+        type: String,
+        default: '24',
+        desc: '图标的大小，即宽高的值'
+      },
+      strokeWidth: {
+        type: String,
+        default: '4',
+        desc: '线条宽度'
+      },
+      theme: {
+        type: String,
+        default: 'outline',
+        validator(value : String) : boolean {
+          return ['outline', 'filled', 'two-tone', 'multi-color'].includes(
+            value
+          )
+        }
+      },
+      strokeLinecap: {
+        type: String,
+        default: 'round',
+        validator(value : String) : boolean {
+          return ['butt', 'round', 'square'].includes(value)
+        },
+        desc: '描边端点类型'
+      },
+      strokeLinejoin: {
+        type: String,
+        default: 'round',
+        validator(value : String) : boolean {
+          return ['miter', 'round', 'bevel'].includes(value)
+        },
+        desc: '描边连接类型'
+      },
+      fill: {
+        type:  Array as PropType<string[]>,
+        default: ['#000000']
+      },
+      width: {
+        type: String,
+        default: "48"
+      },
+      height: {
+        type: String,
+        default: "48"
+      },
+      mode: {
+        type: String,
+        default: "scaleToFill"
+      },
+      fadeShow: {
+        type: Boolean,
+        default: false
+      },
+      lazyLoad: {
+        type: Boolean,
+        default: false
+      },
+      showMenuByLongpress: {
+        type: Boolean,
+        default: false
+      },
+      draggable: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed: {
+      fillColor() : string[] {
+        let res: string[] =  this.fill
+        return res
+      },
+      outStrokeColor() : string {
+        return typeof this.fillColor[0] === 'string'
+          ? this.fillColor[0]
+          : 'currentColor'
+      },
+      outFillColor() : string {
+        return typeof this.fillColor[1] === 'string'
+          ? this.fillColor[1]
+          : 'currentColor'
+      },
+      innerStrokeColor() : string {
+        return typeof this.fillColor[2] === 'string'
+          ? this.fillColor[2]
+          : '#FFF'
+      },
+      innerFillColor() : string {
+        return typeof this.fillColor[3] === 'string'
+          ? this.fillColor[3]
+          : '#43CCF8'
+      },
+      sizeWithUnit() : string {
+        let size = this.size + ''
+        if (/d$/.test(this.size)) {
+          size = this.size + 'px'
+        } else if (size.endsWith('rpx')) {
+          size = uni.rpx2px(parseInt(size)) + 'px'
+        }
+        return size
+      },
+      colors() : string[] {
+        let res: string[] = []
+        if(this.theme === 'outline') {
+          res = this.outline()
+        };
+        if(this.theme === 'filled') {
+          res = this.filled()
+        };
+        if(this.theme === 'two-tone') {
+          res = this.twoTone()
+        };
+        if(this.theme === 'multi-color') {
+          res = this.multi()
+        };
+        
+        return res;
+      },
+      boxStyle() : UTSJSONObject {
+        const style = {
+          width: this.sizeWithUnit,
+          height: this.sizeWithUnit
+        }
+        return style
+      },
+    },
+    methods: {
+      multi(): string[] {
+        return [
+          this.outStrokeColor,
+          this.outFillColor,
+          this.innerStrokeColor,
+          this.innerFillColor
+        ]
+      },
+      twoTone(): string[] {
+        return [
+          this.outStrokeColor,
+          this.outFillColor,
+          this.outStrokeColor,
+          this.outFillColor
+        ]
+      },
+      filled(): string[] {
+        return [this.outStrokeColor, this.outStrokeColor, '#FFF', '#FFF']
+      },
+      outline(): string[] {
+        return [this.outStrokeColor, 'none', this.outStrokeColor, 'none']
+      },
+      changeMessage(event : WebViewMessageEvent) {
+       const props = this
+          const src = 
+          
+    '<?xml version="1.0" encoding="UTF-8"?>'
+    + '<svg width="' + props.sizeWithUnit + '" height="' + props.sizeWithUnit + '" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + '<path d="M10 16C13.3137 16 16 13.3137 16 10C16 6.68629 13.3137 4 10 4C6.68629 4 4 6.68629 4 10C4 13.3137 6.68629 16 10 16Z" fill="' + props.colors[1] + '" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M6.28339 14.7109C5.42081 16.3526 4.77973 18.1289 4.3999 20.0001" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M14.7109 6.28339C16.3527 5.4208 18.129 4.77973 20.0002 4.3999" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M38 16C41.3137 16 44 13.3137 44 10C44 6.68629 41.3137 4 38 4C34.6863 4 32 6.68629 32 10C32 13.3137 34.6863 16 38 16Z" fill="' + props.colors[1] + '" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M33.2893 6.28339C31.6475 5.4208 29.8712 4.77973 28 4.3999" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M41.7163 14.7109C42.5789 16.3526 43.22 18.1289 43.5998 20.0001" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M38 44C41.3137 44 44 41.3137 44 38C44 34.6863 41.3137 32 38 32C34.6863 32 32 34.6863 32 38C32 41.3137 34.6863 44 38 44Z" fill="' + props.colors[1] + '" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M41.7163 33.2893C42.5789 31.6475 43.22 29.8712 43.5998 28" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M33.2893 41.7163C31.6475 42.5789 29.8712 43.22 28 43.5998" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M10 44C13.3137 44 16 41.3137 16 38C16 34.6863 13.3137 32 10 32C6.68629 32 4 34.6863 4 38C4 41.3137 6.68629 44 10 44Z" fill="' + props.colors[1] + '" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M14.7109 41.7163C16.3527 42.5789 18.129 43.22 20.0002 43.5998" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M6.28339 33.2893C5.42081 31.6475 4.77973 29.8712 4.3999 28" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+        + '<path d="M24 30V18M18 24H30H18Z" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '" stroke-linejoin="' + props.strokeLinejoin + '"/>'
+    + '</svg>'
+
+       
+        if ((event.detail.data?.get("isInitialize") ?? false) == true) {
+          this.webviewContext = uni.createWebviewContext(this._uid, this);
+          this.webviewContext?.evalJS("onReceiveSvg('"+src+"')");
+        } else {
+          this.png = event.detail.data?.get("png");
+          this.isShow = false;
+        };
+      },
+      uuid(length : number) : string {
+        let uuid : string = "";
+        let chars : string[] = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+        for (let i = 0; i < length; i++) { uuid += chars[Math.floor(Math.random() * chars.length)]; };
+        return uuid;
+      },
+      changeError(event : ImageErrorEvent) {
+        this.$emit("error", event)
+      },
+      changeLoad(event : ImageLoadEvent) {
+        this.$emit("load", event)
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  @import '../../style/index.css';
+</style>

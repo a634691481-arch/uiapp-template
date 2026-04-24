@@ -1,0 +1,237 @@
+<template>
+  <view class="a-icon-svg" :style="[boxStyle]">
+    <web-view v-if="isShow" class="__wh-0" :id="_uid" @message="changeMessage"
+      src="/uni_modules/icon-park/hybrid/html/index.html" />
+    <image :src="png"  class="a-icon-pack-image" :style="[boxStyle]" :mode="mode" :fade-show="fadeShow"
+      :lazy-load="lazyLoad" :show-menu-by-longpress="showMenuByLongpress" :draggable="draggable" @error="changeError"
+      @load="changeLoad" />
+  </view>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        _uid: this.uuid(32) as string,
+        png: "" as any | null,
+        webviewContext: null as WebviewContext | null,
+        isShow: true as boolean,
+        rtl: false,
+        colors1: {
+          outline: {
+            fill: '#333',
+            background: 'transparent'
+          },
+          filled: {
+            fill: '#333',
+            background: '#FFF'
+          },
+          twoTone: {
+            fill: '#333',
+            twoTone: '#2F88FF'
+          },
+          multiColor: {
+            outStrokeColor: '#333',
+            outFillColor: '#2F88FF',
+            innerStrokeColor: '#FFF',
+            innerFillColor: '#43CCF8'
+          }
+        },
+        prefix: 'i'
+
+      }
+    },
+    props: {
+      size: {
+        type: String,
+        default: '24',
+        desc: '图标的大小，即宽高的值'
+      },
+      strokeWidth: {
+        type: String,
+        default: '4',
+        desc: '线条宽度'
+      },
+      theme: {
+        type: String,
+        default: 'outline',
+        validator(value : String) : boolean {
+          return ['outline', 'filled', 'two-tone', 'multi-color'].includes(
+            value
+          )
+        }
+      },
+      strokeLinecap: {
+        type: String,
+        default: 'round',
+        validator(value : String) : boolean {
+          return ['butt', 'round', 'square'].includes(value)
+        },
+        desc: '描边端点类型'
+      },
+      strokeLinejoin: {
+        type: String,
+        default: 'round',
+        validator(value : String) : boolean {
+          return ['miter', 'round', 'bevel'].includes(value)
+        },
+        desc: '描边连接类型'
+      },
+      fill: {
+        type:  Array as PropType<string[]>,
+        default: ['#000000']
+      },
+      width: {
+        type: String,
+        default: "48"
+      },
+      height: {
+        type: String,
+        default: "48"
+      },
+      mode: {
+        type: String,
+        default: "scaleToFill"
+      },
+      fadeShow: {
+        type: Boolean,
+        default: false
+      },
+      lazyLoad: {
+        type: Boolean,
+        default: false
+      },
+      showMenuByLongpress: {
+        type: Boolean,
+        default: false
+      },
+      draggable: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed: {
+      fillColor() : string[] {
+        let res: string[] =  this.fill
+        return res
+      },
+      outStrokeColor() : string {
+        return typeof this.fillColor[0] === 'string'
+          ? this.fillColor[0]
+          : 'currentColor'
+      },
+      outFillColor() : string {
+        return typeof this.fillColor[1] === 'string'
+          ? this.fillColor[1]
+          : 'currentColor'
+      },
+      innerStrokeColor() : string {
+        return typeof this.fillColor[2] === 'string'
+          ? this.fillColor[2]
+          : '#FFF'
+      },
+      innerFillColor() : string {
+        return typeof this.fillColor[3] === 'string'
+          ? this.fillColor[3]
+          : '#43CCF8'
+      },
+      sizeWithUnit() : string {
+        let size = this.size + ''
+        if (/d$/.test(this.size)) {
+          size = this.size + 'px'
+        } else if (size.endsWith('rpx')) {
+          size = uni.rpx2px(parseInt(size)) + 'px'
+        }
+        return size
+      },
+      colors() : string[] {
+        let res: string[] = []
+        if(this.theme === 'outline') {
+          res = this.outline()
+        };
+        if(this.theme === 'filled') {
+          res = this.filled()
+        };
+        if(this.theme === 'two-tone') {
+          res = this.twoTone()
+        };
+        if(this.theme === 'multi-color') {
+          res = this.multi()
+        };
+        
+        return res;
+      },
+      boxStyle() : UTSJSONObject {
+        const style = {
+          width: this.sizeWithUnit,
+          height: this.sizeWithUnit
+        }
+        return style
+      },
+    },
+    methods: {
+      multi(): string[] {
+        return [
+          this.outStrokeColor,
+          this.outFillColor,
+          this.innerStrokeColor,
+          this.innerFillColor
+        ]
+      },
+      twoTone(): string[] {
+        return [
+          this.outStrokeColor,
+          this.outFillColor,
+          this.outStrokeColor,
+          this.outFillColor
+        ]
+      },
+      filled(): string[] {
+        return [this.outStrokeColor, this.outStrokeColor, '#FFF', '#FFF']
+      },
+      outline(): string[] {
+        return [this.outStrokeColor, 'none', this.outStrokeColor, 'none']
+      },
+      changeMessage(event : WebViewMessageEvent) {
+       const props = this
+          const src = 
+          
+    '<?xml version="1.0" encoding="UTF-8"?>'
+    + '<svg width="' + props.sizeWithUnit + '" height="' + props.sizeWithUnit + '" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + '<path d="M30.19 4H17.81C16.7825 4 15.9221 4.77859 15.8199 5.80099L14.0199 23.801C14.0067 23.9333 14.0067 24.0667 14.0199 24.199L15.8199 42.199C15.9221 43.2214 16.7825 44 17.81 44H30.19C31.2175 44 32.0779 43.2214 32.1801 42.199L33.9801 24.199C33.9933 24.0667 33.9933 23.9333 33.9801 23.801L32.1801 5.80099C32.0779 4.77859 31.2175 4 30.19 4Z" fill="' + props.colors[1] + '" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '"/>'
+        + '<path d="M14 24L34 24" stroke="' + props.colors[2] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '"/>'
+        + '<path d="M24 4V44" stroke="' + props.colors[2] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '"/>'
+        + '<path d="M20 4H28" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '"/>'
+        + '<path d="M20 44H28" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '"/>'
+        + '<path d="M15 14L14.0199 23.801C14.0067 23.9333 14.0067 24.0667 14.0199 24.199L15 34" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '"/>'
+        + '<path d="M33 14L33.9801 23.801C33.9933 23.9333 33.9933 24.0667 33.9801 24.199L33 34" stroke="' + props.colors[0] + '" stroke-width="' + props.strokeWidth + '" stroke-linecap="' + props.strokeLinecap + '"/>'
+    + '</svg>'
+
+       
+        if ((event.detail.data?.get("isInitialize") ?? false) == true) {
+          this.webviewContext = uni.createWebviewContext(this._uid, this);
+          this.webviewContext?.evalJS("onReceiveSvg('"+src+"')");
+        } else {
+          this.png = event.detail.data?.get("png");
+          this.isShow = false;
+        };
+      },
+      uuid(length : number) : string {
+        let uuid : string = "";
+        let chars : string[] = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+        for (let i = 0; i < length; i++) { uuid += chars[Math.floor(Math.random() * chars.length)]; };
+        return uuid;
+      },
+      changeError(event : ImageErrorEvent) {
+        this.$emit("error", event)
+      },
+      changeLoad(event : ImageLoadEvent) {
+        this.$emit("load", event)
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  @import '../../style/index.css';
+</style>
