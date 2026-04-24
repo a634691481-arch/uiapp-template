@@ -42,7 +42,7 @@
 
 <style lang="scss">
   @import './uni_modules/vk-uview-ui/index.scss';
-  @import './common/css/common.scss';
+  @import './common/css/core.scss';
 
   @import 'tailwindcss/base';
   @import 'tailwindcss/utilities';

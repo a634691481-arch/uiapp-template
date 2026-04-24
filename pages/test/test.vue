@@ -15,7 +15,7 @@
           :title="state.title"
           :border-bottom="false"
           title-color="#000"
-          isBack
+          :isBack="false"
           backIconColor="#000"
         ></u-navbar>
       </template>
