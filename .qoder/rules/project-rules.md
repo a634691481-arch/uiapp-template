@@ -1,8 +1,6 @@
 # Vue 组件规范
 
-- 所有 Vue 组件必须使用 <script setup lang="ts"> 语法糖
 - 组件文件命名使用 PascalCase，页面文件使用 kebab-case
-- 组件必须包含明确的类型定义（interface 或 type）
 - 禁止使用 any 类型，使用 unknown 代替或在必要时添加明确类型注解
 - 自定义组件统一使用 yy- 前缀命名（如 yy-paging、yy-empty、yy-loading）
 - 第三方 UI 组件使用 u- 前缀（如 u-button、u-navbar）
@@ -10,7 +8,6 @@
 # z-paging 分页组件使用规范
 
 - 列表页面必须使用 <yy-paging> 或 <z-paging> 组件
-- 必须配置 :auto="false" 手动控制数据加载
 - 必须实现 @query 回调函数处理分页逻辑
 - 使用 paging.value?.complete(data) 完成数据加载
 - 分页参数统一使用 page 和 pageSize
