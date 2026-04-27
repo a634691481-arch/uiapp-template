@@ -33,7 +33,7 @@
       efresher-angle-enable-change-continued
       auto-show-back-to-top
       :safe-area-inset-bottom="false"
-      :use-safe-area-placeholder="false"
+      :use-safe-area-placeholder="true"
       refresher-vibrate
     >
       <!-- auto-show-system-loading -->
@@ -82,9 +82,9 @@
         <!-- <slot name="top" /> -->
       </template>
 
-      <template #bottom>
+      <!-- <template #bottom>
         <slot name="bottom" />
-      </template>
+      </template> -->
       <template #left>
         <slot name="left" />
       </template>
@@ -142,12 +142,12 @@
     // 空数据提示文字，默认 '暂无数据'
     emptyText: {
       type: String,
-      default: '',
+      default: '暂无数据',
     },
     // 加载更多无更多提示文字，默认 '没有更多了'
     loadingMoreNoMoreText: {
       type: String,
-      default: '',
+      default: '没有更多了',
     },
 
     // 是否关闭首次自动下拉刷新，默认 false（即默认开启）
@@ -329,8 +329,8 @@
 </script>
 
 <style lang="scss" scoped>
-  .yy-paging-container {
-    background-color: $u-bg-white;
-    color: $u-main-color;
-  }
+  // .yy-paging-container {
+  //   background-color: $u-bg-white;
+  //   color: $u-main-color;
+  // }
 </style>

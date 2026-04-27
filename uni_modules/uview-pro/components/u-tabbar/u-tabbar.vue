@@ -178,8 +178,9 @@ const pageUrl = ref(''); // 当前页面URL
 
 onMounted(() => {
     // 是否隐藏原生tabbar
-    // 注意：如果当前页面不是tabbar页面，浏览器控制台会报错：{errMsg: 'hideTabBar:fail not TabBar page'}
-    if (props.hideTabBar) uni.hideTabBar();
+  // 注意：如果当前页面不是tabbar页面，浏览器控制台会报错：{errMsg: 'hideTabBar:fail not TabBar page'}
+    console.log("props.hideTabBar==> ", props.hideTabBar);
+    if (props.hideTabBar)  uni.hideTabBar();
     // 获取引入了u-tabbar页面的路由地址，该地址没有路径前面的"/"
     const pages = getCurrentPages();
     // 页面栈中的最后一个即为项为当前页面，route属性为页面路径

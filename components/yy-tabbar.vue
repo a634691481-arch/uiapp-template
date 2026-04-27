@@ -5,7 +5,7 @@
     :borderTop="false"
     :active-color="$u.color.primary"
     inactive-color="#E0E0E0"
-    hideTabBar
+    :hideTabBar="true"
     @change="onChange"
   ></u-tabbar>
 </template>

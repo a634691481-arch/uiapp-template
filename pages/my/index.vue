@@ -1,6 +1,6 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
-    <view class="bg-gray-50 flex flex-col min-h-screen gap-3 p-3">
+    <view class="bg-gray-50 flex flex-col gap-3 p-3">
       <!-- 用户信息 -->
       <view class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
         <view class="size-12 bg-slate-200 rounded-full"></view>
@@ -19,7 +19,7 @@
       <!-- 金刚区 -->
       <view class="grid grid-cols-4 py-3 bg-white rounded-lg shadow-sm">
         <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.kingKongList" :key="item.name">
-          <view class="size-7 bg-slate-400 rounded-full"></view>
+          <Icon :icon="item.icon" class="size-6 text-[rgba(var(--u-type-primary-rgb),0.66)]" />
           <view class="text-xs text-gray-600">{{ item.name }}</view>
         </view>
       </view>
@@ -35,7 +35,7 @@
         </view>
         <view class="grid grid-cols-4 py-3">
           <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.order" :key="item.name">
-            <view class="size-7 bg-slate-400 rounded-full"></view>
+            <Icon :icon="item.icon" class="size-6 text-[rgba(var(--u-type-primary-rgb),0.66)]" />
             <view class="text-xs text-gray-600">{{ item.name }}</view>
           </view>
         </view>
@@ -49,7 +49,7 @@
           :key="k"
         >
           <view class="flex items-center gap-2">
-            <view class="size-5 bg-slate-300 rounded-sm"></view>
+            <Icon :icon="i.icon" class="size-5 text-[rgba(var(--u-type-primary-rgb),0.66)]" />
             <view class="text-sm text-gray-700">{{ i.name }}</view>
           </view>
           <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
@@ -63,6 +63,7 @@
 
 <script setup>
   import { ref } from 'vue'
+  import { Icon } from '@iconify/vue'
 
   const pagingConfig = ref({
     auto: false,
@@ -79,55 +80,31 @@
     dataList: [],
     avatarUrl: '',
     kingKongList: [
-      {
-        name: '优惠券',
-        icon: '/static/images/my/coupon.png',
-      },
-      {
-        name: '我的年卡',
-        icon: '/static/images/my/coupon.png',
-      },
-      {
-        name: '我的预约',
-        icon: '/static/images/my/coupon.png',
-      },
-      {
-        name: '我的演艺',
-        icon: '/static/images/my/coupon.png',
-      },
+      { name: '优惠券', icon: 'ri:coupon-3-line' },
+      { name: '我的年卡', icon: 'ri:vip-crown-line' },
+      { name: '我的预约', icon: 'ri:calendar-check-line' },
+      { name: '我的演艺', icon: 'ri:clapperboard-line' },
     ],
 
     order: [
-      {
-        name: '待支付',
-        icon: '/static/images/my/coupon.png',
-      },
-      {
-        name: '待使用',
-        icon: '/static/images/my/coupon.png',
-      },
-      {
-        name: '退款',
-        icon: '/static/images/my/coupon.png',
-      },
-      {
-        name: '售后/退换',
-        icon: '/static/images/my/coupon.png',
-      },
+      { name: '待支付', icon: 'ri:bank-card-line' },
+      { name: '待使用', icon: 'ri:checkbox-circle-line' },
+      { name: '退款', icon: 'ri:refund-line' },
+      { name: '售后/退换', icon: 'ri:customer-service-2-line' },
     ],
     list: [
-      { name: '一键定制', icon: '/static/images/my/coupon.png' },
-      { name: '青年权益卡', icon: '/static/images/my/coupon.png' },
-      { name: '发票中心', icon: '/static/images/my/coupon.png' },
-      { name: '我的投诉', icon: '/static/images/my/coupon.png' },
-      { name: '中奖记录', icon: '/static/images/my/coupon.png' },
-      { name: '我的收藏', icon: '/static/images/my/coupon.png' },
-      { name: '我的消息', icon: '/static/images/my/coupon.png' },
-      { name: '出行人信息', icon: '/static/images/my/coupon.png' },
-      { name: '隐私政策简要版', icon: '/static/images/my/coupon.png' },
-      { name: '个人信息收集清单', icon: '/static/images/my/coupon.png' },
-      { name: '应用权限说明', icon: '/static/images/my/coupon.png' },
-      { name: '我要分销', icon: '/static/images/my/coupon.png' },
+      { name: '一键定制', icon: 'ri:brush-line' },
+      { name: '青年权益卡', icon: 'ri:id-card-line' },
+      { name: '发票中心', icon: 'ri:bill-line' },
+      { name: '我的投诉', icon: 'ri:feedback-line' },
+      { name: '中奖记录', icon: 'ri:gift-line' },
+      { name: '我的收藏', icon: 'ri:star-line' },
+      { name: '我的消息', icon: 'ri:mail-line' },
+      { name: '出行人信息', icon: 'ri:team-line' },
+      { name: '隐私政策简要版', icon: 'ri:shield-user-line' },
+      { name: '个人信息收集清单', icon: 'ri:file-list-3-line' },
+      { name: '应用权限说明', icon: 'ri:settings-3-line' },
+      { name: '我要分销', icon: 'ri:share-line' },
     ],
   })
 
