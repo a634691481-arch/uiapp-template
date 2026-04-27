@@ -40,8 +40,7 @@
 </script>
 
 <style lang="scss">
-  @import './uni_modules/vk-uview-ui/index.scss';
-
+  @import '@/uni_modules/uview-pro/index.scss';
   @import 'tailwindcss/base';
   @import 'tailwindcss/utilities';
   @import 'tailwindcss/components';

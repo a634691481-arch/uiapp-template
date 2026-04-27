@@ -27,6 +27,9 @@
       </template>
       <template #bottom></template>
       <view class="flex flex-col gap-4 px-3 py-4">
+        <u-button type="primary">按钮</u-button>
+        <u-button type="primary">按钮</u-button>
+        <u-button type="primary">按钮</u-button>
         <!-- 色板展示 -->
         <view class="p-3 rounded-lg" style="background: var(--bg-color-grey)">
           <text class="block mb-3 text-sm font-medium" style="color: var(--text-color)">主题色板</text>
