@@ -2,7 +2,7 @@
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
     <view class="flex-col gap-3 p-3">
       ///
-      <view class="">55555</view>
+      <view class="">55555 {{ $u.color.primary }}</view>
 
       <view class="bg-[var(--u-type-primary)]">333333333</view>
     </view>
