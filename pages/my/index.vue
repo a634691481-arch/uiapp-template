@@ -55,6 +55,9 @@
           <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
         </view>
       </view>
+      <!-- <view class="w-full">
+        <u-button type="primary" plain>退出登录</u-button>
+      </view> -->
 
       <!--  -->
     </view>
@@ -67,8 +70,8 @@
 
   const pagingConfig = ref({
     auto: false,
-    refresherEnabled: true,
-    showRefresherWhenReload: true,
+    refresherEnabled: false,
+    showRefresherWhenReload: false,
     showTabbar: true,
     hideNav: false,
     showNavBack: true,

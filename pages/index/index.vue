@@ -1,7 +1,10 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
     <view class="flex-col gap-3 p-3">
-     
+      ///
+      <view class="">55555</view>
+
+      <view class="bg-[var(--u-type-primary)]">333333333</view>
     </view>
   </yy-paging>
 </template>
@@ -17,7 +20,9 @@
     navTitle: '我的',
     // navBackground: '',
   })
-
+  import { useTheme } from '@/uni_modules/uview-pro'
+  const x = useTheme()
+  console.log('x==> ', x)
   const state = ref({
     isScroll: false,
     dataList: [],

@@ -1,14 +1,9 @@
 <template>
-  <view
-    class="bg-white w-screen h-screen fixed !z-[999999999999] inset-0 flex flex-col justify-center items-center gap-6"
-  >
+  <view class="bg-white w-screen h-screen fixed !z-[999999999999] inset-0 flex flex-col justify-center items-center gap-6">
     <image src="/static/dddr105.png" mode="aspectFill" class="size-20" />
     <view class="text-[.875rem] text-[#5C6068]">网络连接已断开，请检查网络设置</view>
 
-    <view
-      class="w-[7.625rem] h-[2rem] bg-[#00A9AB] flex justify-center items-center rounded-full"
-      @click="goToSettings"
-    >
+    <view class="w-[7.625rem] h-[2rem] bg-[#00A9AB] flex justify-center items-center rounded-full" @click="goToSettings">
       <view class="text-[.875rem] text-[#FFFFFF]">点击重试</view>
     </view>
   </view>

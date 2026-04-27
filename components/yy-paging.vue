@@ -33,9 +33,10 @@
       efresher-angle-enable-change-continued
       auto-show-back-to-top
       :safe-area-inset-bottom="false"
-      :use-safe-area-placeholder="true"
-      refresher-vibrate
+      :use-safe-area-placeholder="false"
     >
+      <!-- refresher-vibrate -->
+      <!--  -->
       <!-- auto-show-system-loading -->
       <!--  -->
       <!-- auto-show-system-loading-->
@@ -82,9 +83,10 @@
         <!-- <slot name="top" /> -->
       </template>
 
-      <!-- <template #bottom>
+      <template #bottom>
+        <yy-tabbar v-if="showTabbar"></yy-tabbar>
         <slot name="bottom" />
-      </template> -->
+      </template>
       <template #left>
         <slot name="left" />
       </template>
@@ -120,8 +122,6 @@
     </template> -->
       <slot />
     </z-paging>
-
-    <yy-tabbar v-if="showTabbar"></yy-tabbar>
   </view>
 </template>
 
