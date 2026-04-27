@@ -26,7 +26,7 @@
 
       <!-- 我的订单 -->
       <view class="flex flex-col overflow-hidden bg-white rounded-lg shadow-sm">
-        <view class="flex items-center justify-between px-3 py-2.5 border-b border-gray-100">
+        <view class="flex items-center justify-between p-3 border-b border-gray-100">
           <view class="text-sm font-medium text-gray-900">我的订单</view>
           <view class="flex items-center text-xs text-gray-400">
             全部
@@ -55,6 +55,8 @@
           <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
         </view>
       </view>
+
+      <!--  -->
     </view>
   </yy-paging>
 </template>

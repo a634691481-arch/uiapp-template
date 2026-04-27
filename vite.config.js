@@ -7,7 +7,6 @@ import { UnifiedViteWeappTailwindcssPlugin as uvwt } from 'weapp-tailwindcss/vit
 import { codeInspectorPlugin } from 'code-inspector-plugin'
 import autoPagesJson from './js_sdk/a-hua-auto-pages-json'
 import UniRoot from '@uni-ku/root'
-console.log('🚀 ~ :1 ~ UniRoot:', UniRoot)
 
 // 注意： 打包成 h5 和 app 都不需要开启插件配置
 const isH5 = process.env.UNI_PLATFORM === 'h5'

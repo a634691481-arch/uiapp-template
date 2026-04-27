@@ -1,97 +1,97 @@
 {
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^yy-(.*)": "@/components/yy-$1.vue",
-      "^u-(.*)": "@/uni_modules/uview-pro/components/u-$1/u-$1.vue"
-    }
-  },
-  "pages": [
-    {
-      "path": "pages/index/index",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/error/404/404",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/error/404",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/login/index",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/my/index",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/tourGuide/index",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/consult/index",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/test/index",
-      "style": {
-        "disableScroll": true,
-        "enablePullDownRefresh": false
-      }
-    }
-  ],
-  "globalStyle": {
-    "backgroundColor": "@bgColor",
-    "backgroundColorBottom": "@bgColorBottom",
-    "backgroundColorTop": "@bgColorTop",
-    "backgroundTextStyle": "@bgTxtStyle",
-    "navigationBarBackgroundColor": "#000000",
-    "navigationBarTextStyle": "@navTxtStyle",
-    "navigationBarTitleText": "@navTitle",
-    "navigationStyle": "custom"
-  },
-  "tabBar": {
-    "color": "@tabFontColor",
-    "selectedColor": "@tabSelectedColor",
-    "backgroundColor": "@tabBgColor",
-    "borderStyle": "@tabBorderStyle",
-    "list": [
-      {
-        "pagePath": "pages/index/index"
-      },
-      {
-        "pagePath": "pages/tourGuide/index"
-      },
-      {
-        "pagePath": "pages/consult/index"
-      },
-      {
-        "pagePath": "pages/my/index"
-      }
-    ]
-  }
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^yy-(.*)": "@/components/yy-$1.vue",
+			"^u-(.*)": "@/uni_modules/uview-pro/components/u-$1/u-$1.vue"
+		}
+	},
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/error/404/404",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/error/404",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/tourGuide/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/consult/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/test/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		}
+	],
+	"globalStyle": {
+		"backgroundColor": "@bgColor",
+		"backgroundColorBottom": "@bgColorBottom",
+		"backgroundColorTop": "@bgColorTop",
+		"backgroundTextStyle": "@bgTxtStyle",
+		"navigationBarBackgroundColor": "#000000",
+		"navigationBarTextStyle": "@navTxtStyle",
+		"navigationBarTitleText": "@navTitle",
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"color": "@tabFontColor",
+		"selectedColor": "@tabSelectedColor",
+		"backgroundColor": "@tabBgColor",
+		"borderStyle": "@tabBorderStyle",
+		"list": [
+			{
+				"pagePath": "pages/index/index"
+			},
+			{
+				"pagePath": "pages/tourGuide/index"
+			},
+			{
+				"pagePath": "pages/consult/index"
+			},
+			{
+				"pagePath": "pages/my/index"
+			}
+		]
+	}
 }

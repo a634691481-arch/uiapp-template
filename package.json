@@ -108,8 +108,14 @@
       }
     }
   },
+  "pnpm": {
+    "overrides": {
+      "@iconify/utils": "2.1.33"
+    }
+  },
   "dependencies": {
     "@formkit/auto-animate": "^0.9.0",
+    "@iconify/vue": "^5.0.0",
     "chokidar": "^5.0.0",
     "crypto-js": "^4.2.0",
     "js-md5": "^0.8.3"
