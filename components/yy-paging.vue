@@ -71,13 +71,13 @@
           v-if="!hideNav"
           :is-back="showNavBack && !showTabbar"
           :title="navTitle"
-          :background="background"
+          :background="navBackground"
           :is-fixed="true"
           :immersive="false"
           back-icon-name="arrow-leftward"
           title-width="350"
-          title-color="#ffffff"
-          back-icon-color="#ffffff"
+          :title-color="navTitleColor"
+          :back-icon-color="backIconColor"
         />
         <!-- <slot name="top" /> -->
       </template>
@@ -129,11 +129,16 @@
   const emits = defineEmits(['onRefresh', 'query', 'update:modelValue', 'scrolltolower'])
 
   const props = defineProps({
-    //pagingStyle
-    // pagingStyle: {
-    //   type: Object,
-    //   default: () => ({}),
-    // },
+    // 返回按钮颜色，默认 #000000
+    backIconColor: {
+      type: String,
+      default: '#000000',
+    },
+    // 返回按钮颜色，默认 #fff
+    navTitleColor: {
+      type: String,
+      default: '#fff',
+    },
     // 空数据提示文字，默认 '暂无数据'
     emptyText: {
       type: String,
@@ -239,16 +244,18 @@
       type: String,
       default: '',
     },
+    // 导航栏背景配置
+    navBackground: {
+      type: Object,
+      default: () => ({
+        backgroundColor: 'var(--u-type-primary)',
+        backgroundImage: 'linear-gradient(90deg, var(--u-type-primary-dark), var(--u-type-primary-disabled))',
+      }),
+    },
   })
 
   const paging = ref(null)
   const list = ref([])
-
-  const background = reactive({
-    backgroundColor: 'var(--u-type-primary)', // 导航栏背景主色
-    // 渐变色
-    backgroundImage: 'linear-gradient(90deg, var(--u-type-primary-dark), var(--u-type-primary-disabled))', // 导航栏背景渐变效果
-  })
 
   // 父 -> 子 同步：监听 modelValue，初始化与同步到内部 list
   watch(

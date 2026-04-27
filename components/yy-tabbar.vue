@@ -4,7 +4,7 @@
     :list="tabbarList"
     :borderTop="false"
     :active-color="$u.color.primary"
-    inactive-color="#666666"
+    inactive-color="#E0E0E0"
     hideTabBar
     @change="onChange"
   ></u-tabbar>
