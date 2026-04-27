@@ -4,82 +4,87 @@ const TOKEN_KEY = 'uni_id_token'
 let isShowingAlert = false
 
 // 统一错误提示方法
-function showErrorAlert(res, message, callback) {
+function showErrorAlert(res, message) {
   // 如果正在显示弹框，则不重复显示
-  if (isShowingAlert) return
+  if (isShowingAlert) return Promise.reject(res)
 
   isShowingAlert = true
 
   const code = res.code || res.status || ''
   const errorMsg = message || '操作失败'
   const alertMessage = code ? `[${code}] ${errorMsg}` : errorMsg
-  vk.alert(alertMessage, () => {
-    isShowingAlert = false
-    if (callback) callback()
+
+  uni.showModal({
+    title: '提示',
+    content: alertMessage,
+    showCancel: false,
+    success: () => {
+      isShowingAlert = false
+    },
   })
+
+  return Promise.reject(res)
 }
 
 const install = () => {
+  // 请求拦截
   uni.$u.http.interceptor.request = config => {
-    const token = uni.vk.getStorageSync(TOKEN_KEY)
+    const token = uni.getStorageSync(TOKEN_KEY)
     if (token) config.header['Authorization'] = token
 
     config.header['x-timestamp'] = Date.now()
     config.header['x-client-platform'] = uni.getSystemInfoSync().platform
 
-    //
     return config
   }
-  uni.$u.http.interceptor.response = (res, header, config) => {
-    console.log('🚀 ~ :14 ~ install ~ res:', res)
+
+  // 响应拦截
+  uni.$u.http.interceptor.response = res => {
+    // console.log('🚀 ~ http response:', res)
+
     const CODE_HANDLERS = {
       // 业务失败
       0: () => {
-        vk.hideLoading()
-        showErrorAlert(res, res.msg || res.message || '操作失败', () => {
-          return Promise.reject(res)
-        })
+        uni.hideLoading()
+        return showErrorAlert(res, res.msg || res.message || '操作失败')
       },
 
       // 业务成功
-      1: () => {
-        return res
-      },
+      1: () => res,
 
       // 业务成功
-      200: () => {
-        return res
-      },
+      200: () => res,
 
       // 未登录或登录过期
       401: () => {
-        vk.hideLoading()
+        uni.hideLoading()
 
         // 如果正在显示弹框，则不重复显示
         if (isShowingAlert) return Promise.reject(res)
 
         isShowingAlert = true
-        vk.alert('登录已过期,请重新登录', () => {
-          isShowingAlert = false
-          vk.reLaunch('/pages/login/index')
+        uni.showModal({
+          title: '提示',
+          content: '登录已过期,请重新登录',
+          showCancel: false,
+          success: () => {
+            isShowingAlert = false
+            uni.reLaunch({ url: '/pages/login/index' })
+          },
         })
         return Promise.reject(res)
       },
 
       // 无权限
       403: () => {
-        vk.hideLoading()
-        showErrorAlert(res, res.msg || res.message || '暂无权限访问', () => {
-          return Promise.reject(res)
-        })
+        uni.hideLoading()
+        return showErrorAlert(res, res.msg || res.message || '暂无权限访问')
       },
 
       // 服务器错误
       500: () => {
-        vk.hideLoading()
-        showErrorAlert(res, res.msg || res.message || '服务器错误,请稍后重试', () => {
-          return Promise.reject(res)
-        })
+        uni.hideLoading()
+        return showErrorAlert(res, res.msg || res.message || '服务器错误,请稍后重试')
       },
     }
 
@@ -92,4 +97,4 @@ const install = () => {
     return res
   }
 }
-export default install
+export default { install }

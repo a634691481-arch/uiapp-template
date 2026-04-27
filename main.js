@@ -16,11 +16,11 @@ import vk from './uni_modules/vk-unicloud'
 // 引入 uView UI
 // import uView from './uni_modules/vk-uview-ui'
 
-// // 引入 http 拦截器
-// import httpInterceptor from '@/apis/http.interceptor.js'
+// 引入 http 拦截器
+import httpInterceptor from '@/apis/http.interceptor.js'
 
-// // 引入 API 集中管理
-// import httpApi from '@/apis/http.api.js'
+// 引入 API 集中管理
+import httpApi from '@/apis/http.api.js'
 
 // #ifndef VUE3
 // import Vue from 'vue'
@@ -68,10 +68,10 @@ export function createApp() {
   app.use(store)
 
   // 引入 API 集中管理
-  // app.use(httpApi)
+  httpApi.install()
 
-  // // 引入 http 拦截器
-  // app.use(httpInterceptor)
+  // 引入 http 拦截器
+  httpInterceptor.install()
 
   return { app }
 }
