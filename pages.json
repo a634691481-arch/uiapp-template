@@ -51,13 +51,20 @@
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#fff",
-		"navigationStyle": "custom",
-		"navigationBarTitleText": "它思乐游"
+		"backgroundColor": "@bgColor",
+		"backgroundColorBottom": "@bgColorBottom",
+		"backgroundColorTop": "@bgColorTop",
+		"backgroundTextStyle": "@bgTxtStyle",
+		"navigationBarBackgroundColor": "#000000",
+		"navigationBarTextStyle": "@navTxtStyle",
+		"navigationBarTitleText": "uView Pro Starter",
+		"navigationStyle": "custom"
 	},
 	"tabBar": {
-		"borderStyle": "white",
+		"color": "@tabFontColor",
+		"selectedColor": "@tabSelectedColor",
+		"backgroundColor": "@tabBgColor",
+		"borderStyle": "@tabBorderStyle",
 		"list": [
 			{
 				"pagePath": "pages/index/index"

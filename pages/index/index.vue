@@ -1,52 +1,37 @@
 <template>
-  <view>
-    <yy-paging
-      v-model="state.dataList"
-      @query="queryList"
-      ref="paging"
-      :auto="false"
-      @scroll="scroll"
-      :refresher-enabled="true"
-      :showRefresherWhenReload="true"
-      :showTabbar="true"
-    >
-      <template #top>
-        <u-navbar
-          :background="{ backgroundColor: state.isScroll ? '#fff' : '#fff' }"
-          :title="state.title"
-          :border-bottom="false"
-          title-color="#000"
-          :isBack="false"
-          backIconColor="#000"
-        ></u-navbar>
-      </template>
-      <template #empty>
-        <yy-empty></yy-empty>
-      </template>
-      <template #loadingMoreNoMore>
-        <yy-nomore></yy-nomore>
-      </template>
-      <template #bottom></template>
-      <view class="inline-flex flex-col gap-3 p-3">
-        <u-button type="primary" :color="$u.color.primary">提交</u-button>
-        <u-button type="primary" :color="$u.color.primary">提交</u-button>
-        <u-button type="primary" :color="$u.color.primary">提交</u-button>
-      </view>
-    </yy-paging>
-  </view>
+  <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
+    <view class="inline-flex flex-col gap-3 p-3">
+      <u-button type="primary" :color="$u.color.primary">提交</u-button>
+      <u-button type="primary" :color="$u.color.primary">提交</u-button>
+      <u-button type="primary" :color="$u.color.primary">提交</u-button>
+      <u-icon name="chat" size="40" color="var(--u-type-primary)" />
+
+      <view class="text-xl font-bold text-[var(--u-type-primary)]">555555555555555</view>
+    </view>
+  </yy-paging>
 </template>
 
 <script setup>
+  const pagingConfig = ref({
+    auto: false,
+    refresherEnabled: true,
+    showRefresherWhenReload: true,
+    showTabbar: true,
+    hideNav: false,
+    showNavBack: true,
+    navTitle: '页面标题',
+  })
+
   const state = ref({
     isScroll: false,
     dataList: [],
-    title: '页面标题',
   })
 
   const paging = ref()
 
   onLoad(options => {
     console.log('🚀 页面加载:', options)
+    console.log('res==> ', uni.$u.getColor('primary'))
   })
 
   onShow(options => {

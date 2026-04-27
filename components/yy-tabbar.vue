@@ -11,28 +11,26 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex'
+  let vk = uni.vk
 
   export default {
     computed: {
-      ...mapState('tabbar', ['list', 'activeIndex']),
       tabbarList() {
-        return this.list
+        return vk.getVuex('$tabbar.list')
       },
       activeIndex: {
         get() {
-          return this.$store.state.tabbar.activeIndex
+          return vk.getVuex('$tabbar.activeIndex')
         },
         set(val) {
-          this.switchTab(val)
+          vk.vuex.dispatch('$tabbar/switchTab', val)
         },
       },
     },
     methods: {
-      ...mapActions('tabbar', ['switchTab']),
       // tab 切换回调
       onChange(index) {
-        this.switchTab(index)
+        vk.vuex.dispatch('$tabbar/switchTab', index)
       },
     },
   }

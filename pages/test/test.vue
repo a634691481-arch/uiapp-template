@@ -8,6 +8,7 @@
       @scroll="scroll"
       :refresher-enabled="true"
       :showRefresherWhenReload="true"
+      :showTabbar="true"
     >
       <template #top>
         <u-navbar

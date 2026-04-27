@@ -1,5 +1,5 @@
 <template>
-  <view class="">
+  <view class="yy-paging-container">
     <z-paging
       ref="paging"
       :auto="auto"
@@ -58,7 +58,28 @@
       <!-- auto-show-back-to-top 自动显示点击返回顶部按钮 -->
       <!-- refresher-f2-enabled  是否开启二楼 -->
       <template #top>
-        <slot name="top" />
+        <!-- <u-navbar
+          :background="{ backgroundColor: state.isScroll ? '#fff' : '#fff' }"
+          :title="state.title"
+          :border-bottom="false"
+          title-color="#000"
+          :isBack="false"
+          backIconColor="#000"
+        ></u-navbar> -->
+
+        <u-navbar
+          v-if="!hideNav"
+          :is-back="showNavBack && !showTabbar"
+          :title="navTitle"
+          :background="background"
+          :is-fixed="true"
+          :immersive="false"
+          back-icon-name="arrow-leftward"
+          title-width="350"
+          title-color="#ffffff"
+          back-icon-color="#ffffff"
+        />
+        <!-- <slot name="top" /> -->
       </template>
 
       <template #bottom>
@@ -75,13 +96,15 @@
       </template>
 
       <template #empty>
-        <slot name="empty" />
+        <!-- <slot name="empty" /> -->
+        <yy-empty :text="emptyText"></yy-empty>
       </template>
       <template #cell="{ item, index }">
         <slot name="cell" :item="item" :index="index" />
       </template>
       <template #loadingMoreNoMore>
-        <slot name="loadingMoreNoMore" />
+        <!-- <slot name="loadingMoreNoMore" /> -->
+        <yy-nomore :text="loadingMoreNoMoreText"></yy-nomore>
       </template>
       <template #refresherF2>
         <view class="p-3">
@@ -106,6 +129,22 @@
   const emits = defineEmits(['onRefresh', 'query', 'update:modelValue', 'scrolltolower'])
 
   const props = defineProps({
+    //pagingStyle
+    // pagingStyle: {
+    //   type: Object,
+    //   default: () => ({}),
+    // },
+    // 空数据提示文字，默认 '暂无数据'
+    emptyText: {
+      type: String,
+      default: '',
+    },
+    // 加载更多无更多提示文字，默认 '没有更多了'
+    loadingMoreNoMoreText: {
+      type: String,
+      default: '',
+    },
+
     // 是否关闭首次自动下拉刷新，默认 false（即默认开启）
     showRefresherWhenReload: {
       type: Boolean,
@@ -114,7 +153,7 @@
     // 列表背景色，默认浅灰
     bgColor: {
       type: String,
-      default: '#f4f6f8',
+      default: 'var(--u-bg-white)',
     },
     // 是否启用“加载更多”功能，默认 true
     loadingMoreEnabled: {
@@ -185,10 +224,31 @@
       type: Boolean,
       default: false,
     },
+    // 是否隐藏导航栏，默认 false（显示导航栏）
+    hideNav: {
+      type: Boolean,
+      default: false,
+    },
+    // 是否显示导航栏返回按钮，默认 false
+    showNavBack: {
+      type: Boolean,
+      default: false,
+    },
+    // 导航栏标题
+    navTitle: {
+      type: String,
+      default: '',
+    },
   })
 
   const paging = ref(null)
   const list = ref([])
+
+  const background = reactive({
+    backgroundColor: 'var(--u-type-primary)', // 导航栏背景主色
+    // 渐变色
+    backgroundImage: 'linear-gradient(90deg, var(--u-type-primary-dark), var(--u-type-primary-disabled))', // 导航栏背景渐变效果
+  })
 
   // 父 -> 子 同步：监听 modelValue，初始化与同步到内部 list
   watch(
@@ -260,3 +320,10 @@
 
   defineExpose({ reload, complete, scrollIntoViewById, refresh, setLocalPaging, scrollToTop })
 </script>
+
+<style lang="scss" scoped>
+  .yy-paging-container {
+    background-color: $u-bg-white;
+    color: $u-main-color;
+  }
+</style>
