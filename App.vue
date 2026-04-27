@@ -11,7 +11,6 @@
     onLaunch: function (options) {
       // uni.vk.vuex.dispatch('$user/getConfig')
 
-      // error ：config.debug 在正式环境时，值为false，故此{}内的代码只有开发环境才会执行
       if (config.debug) {
         // #ifndef APP-PLUS
         console.log(
@@ -22,7 +21,6 @@
         // #endif
         console.log('App Launch')
       }
-      // error：以下代码正式和开发环境都会执行
       // #ifdef MP
       uni.vk.updateManager.updateReady() // 此代码可以让小程序自动检测最新版本
       // #endif

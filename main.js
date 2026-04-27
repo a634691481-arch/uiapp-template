@@ -1,6 +1,7 @@
 import App from './App'
 import store from './store'
 import config from '@/app.config.js'
+import themes from './common/function/uview-pro.theme'
 import uViewPro from '@/uni_modules/uview-pro'
 
 uni.$zp = {
@@ -23,7 +24,13 @@ import { createSSRApp } from 'vue'
 export function createApp() {
   const app = createSSRApp(App)
 
-  app.use(uViewPro)
+  app.use(uViewPro, {
+    theme: {
+      themes: themes,
+      defaultTheme: 'purple', // 默认主题名称
+      defaultDarkMode: 'light', // 默认暗黑模式：auto、light、dark
+    },
+  })
 
   // 引入 vk框架前端
   app.use(vk, config)

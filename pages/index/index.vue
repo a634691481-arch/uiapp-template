@@ -8,6 +8,7 @@
       @scroll="scroll"
       :refresher-enabled="true"
       :showRefresherWhenReload="true"
+      :showTabbar="true"
     >
       <template #top>
         <u-navbar
@@ -26,38 +27,30 @@
         <yy-nomore></yy-nomore>
       </template>
       <template #bottom></template>
-      <view class="flex flex-col gap-4 px-3 py-4">
-        <u-button type="primary">按钮</u-button>
-        <u-button type="primary">按钮</u-button>
-        <u-button type="primary">按钮</u-button>
-        <u-tag text="标签文字" type="primary" mode="dark" class="!rounded-full" size="default" />
-        <view class="u-main-color">main-colormain-colormain-color</view>
+      <view class="inline-flex flex-col gap-3 p-3">
+        <u-button type="primary" :color="$u.color.primary">提交</u-button>
+        <u-button type="primary" :color="$u.color.primary">提交</u-button>
+        <u-button type="primary" :color="$u.color.primary">提交</u-button>
       </view>
     </yy-paging>
   </view>
 </template>
 
 <script setup>
-  const api = uni.$api
-
   const state = ref({
     isScroll: false,
     dataList: [],
-    title: '主题色示例',
-    formData: {
-      gender: '',
-    },
+    title: '页面标题',
   })
 
   const paging = ref()
 
   onLoad(options => {
     console.log('🚀 页面加载:', options)
-    // api.sendSms({ phone: '13800138000' })
   })
 
   onShow(options => {
-    console.log('🚀 页面显示:', options)
+    console.log('🚀 页面加载:', options)
   })
 
   function scroll(e) {
@@ -65,7 +58,7 @@
   }
 
   async function queryList(page, limit) {
-    await new Promise(resolve => setTimeout(resolve, 500))
+    await new Promise(resolve => setTimeout(resolve, 1000))
     paging.value?.complete([1])
   }
 </script>

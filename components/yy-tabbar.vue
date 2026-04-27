@@ -1,39 +1,39 @@
 <template>
   <u-tabbar
-    v-model="current"
-    :list="list"
+    v-model="activeIndex"
+    :list="tabbarList"
     :borderTop="false"
-    active-color="#18C9D9"
+    :active-color="$u.color.primary"
     inactive-color="#666666"
+    hideTabBar
+    @change="onChange"
   ></u-tabbar>
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
+
   export default {
-    data() {
-      return {
-        list: [
-          {
-            iconPath: '/static/tabbar/20251223095345.png',
-            selectedIconPath: '/static/tabbar/20251223095343.png',
-            text: '咨询',
-            pagePath: '/pages/index/index'
-          },
-          {
-            iconPath: '/static/tabbar/20251223095341.png',
-            selectedIconPath: '/static/tabbar/20251223095342.png',
-            text: '小红花',
-            pagePath: '/pages/safflower/index'
-          },
-          {
-            iconPath: '/static/tabbar/20251223095340.png',
-            selectedIconPath: '/static/tabbar/20251223095337.png',
-            text: '我的',
-            pagePath: '/pages/my/index'
-          }
-        ],
-        current: 0
-      }
-    }
+    computed: {
+      ...mapState('tabbar', ['list', 'activeIndex']),
+      tabbarList() {
+        return this.list
+      },
+      activeIndex: {
+        get() {
+          return this.$store.state.tabbar.activeIndex
+        },
+        set(val) {
+          this.switchTab(val)
+        },
+      },
+    },
+    methods: {
+      ...mapActions('tabbar', ['switchTab']),
+      // tab 切换回调
+      onChange(index) {
+        this.switchTab(index)
+      },
+    },
   }
 </script>

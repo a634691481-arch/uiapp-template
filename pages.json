@@ -57,21 +57,16 @@
 		"navigationBarTitleText": "它思乐游"
 	},
 	"tabBar": {
-		"color": "#666666",
-		"selectedColor": "#18C9D9",
 		"borderStyle": "white",
 		"list": [
 			{
-				"pagePath": "pages/index/index",
-				"text": "首页"
+				"pagePath": "pages/index/index"
 			},
 			{
-				"pagePath": "pages/my/index",
-				"text": "我的"
+				"pagePath": "pages/my/index"
 			},
 			{
-				"pagePath": "pages/test/test",
-				"text": "测试"
+				"pagePath": "pages/test/test"
 			}
 		]
 	}
