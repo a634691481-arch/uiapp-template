@@ -13,20 +13,27 @@ export default {
       {
         iconPath: '/static/tabbar/20251223095345.png',
         selectedIconPath: '/static/tabbar/20251223095343.png',
-        text: '咨询',
+        text: '首页',
         pagePath: '/pages/index/index',
+      },
+
+      {
+        iconPath: '/static/tabbar/20251223095339.png',
+        selectedIconPath: '/static/tabbar/20251223095340.png',
+        text: '旅游',
+        pagePath: '/pages/tourGuide/index',
+      },
+      {
+        iconPath: '/static/tabbar/20251223095337.png',
+        selectedIconPath: '/static/tabbar/20251223095339.png',
+        text: '咨询',
+        pagePath: '/pages/consult/index',
       },
       {
         iconPath: '/static/tabbar/20251223095341.png',
         selectedIconPath: '/static/tabbar/20251223095342.png',
         text: '我的',
         pagePath: '/pages/my/index',
-      },
-      {
-        iconPath: '/static/tabbar/20251223095340.png',
-        selectedIconPath: '/static/tabbar/20251223095337.png',
-        text: '测试',
-        pagePath: '/pages/test/test',
       },
     ],
   },

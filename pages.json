@@ -43,7 +43,21 @@
 			}
 		},
 		{
-			"path": "pages/test/test",
+			"path": "pages/tourGuide/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/consult/index",
+			"style": {
+				"disableScroll": true,
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/test/index",
 			"style": {
 				"disableScroll": true,
 				"enablePullDownRefresh": false
@@ -70,10 +84,13 @@
 				"pagePath": "pages/index/index"
 			},
 			{
-				"pagePath": "pages/my/index"
+				"pagePath": "pages/tourGuide/index"
 			},
 			{
-				"pagePath": "pages/test/test"
+				"pagePath": "pages/consult/index"
+			},
+			{
+				"pagePath": "pages/my/index"
 			}
 		]
 	}
