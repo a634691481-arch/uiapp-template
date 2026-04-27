@@ -22,4 +22,5 @@ const api = {
   sendSms: params => uni.$u.http.post('/api/sms/send', params),
 }
 
+export { api }
 export default { install, api }

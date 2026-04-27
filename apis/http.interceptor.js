@@ -42,17 +42,22 @@ const install = () => {
   uni.$u.http.interceptor.response = res => {
     // console.log('🚀 ~ http response:', res)
 
+    // uview-pro 的响应结构：业务数据在 res.data 中
+    const businessData = res.data || {}
+    const code = businessData.code
+    const msg = businessData.msg || businessData.message
+
     const CODE_HANDLERS = {
       // 业务失败
       0: () => {
         uni.hideLoading()
-        return showErrorAlert(res, res.msg || res.message || '操作失败')
+        return showErrorAlert(res, msg || '操作失败')
       },
 
       // 业务成功
       1: () => res,
 
-      // 业务成功
+      // 业务成功（HTTP 200 兼容）
       200: () => res,
 
       // 未登录或登录过期
@@ -65,7 +70,7 @@ const install = () => {
         isShowingAlert = true
         uni.showModal({
           title: '提示',
-          content: '登录已过期,请重新登录',
+          content: msg || '登录已过期,请重新登录',
           showCancel: false,
           success: () => {
             isShowingAlert = false
@@ -78,22 +83,22 @@ const install = () => {
       // 无权限
       403: () => {
         uni.hideLoading()
-        return showErrorAlert(res, res.msg || res.message || '暂无权限访问')
+        return showErrorAlert(res, msg || '暂无权限访问')
       },
 
       // 服务器错误
       500: () => {
         uni.hideLoading()
-        return showErrorAlert(res, res.msg || res.message || '服务器错误,请稍后重试')
+        return showErrorAlert(res, msg || '服务器错误,请稍后重试')
       },
     }
 
-    const handler = CODE_HANDLERS[res.code || res.status]
+    const handler = CODE_HANDLERS[code]
     if (handler) {
       return handler()
     }
 
-    console.warn(`未处理的响应码: ${res.code}`, res)
+    console.warn(`未处理的响应码: ${code}`, res)
     return res
   }
 }

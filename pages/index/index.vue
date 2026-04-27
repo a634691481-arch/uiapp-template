@@ -38,6 +38,8 @@
 </template>
 
 <script setup>
+  const api = uni.$api
+
   const state = ref({
     isScroll: false,
     dataList: [],
@@ -51,7 +53,7 @@
 
   onLoad(options => {
     console.log('🚀 页面加载:', options)
-    uni.$api.sendSms({ phone: '13800138000' })
+    // api.sendSms({ phone: '13800138000' })
   })
 
   onShow(options => {
