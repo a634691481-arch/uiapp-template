@@ -25,7 +25,6 @@ export default defineConfig({
       // showSwitch: true,
       hideDomPathAttr: true,
     }),
-    uni(),
     uvwt({
       rem2rpx: true,
       disabled: WeappTailwindcssDisabled,
@@ -42,6 +41,7 @@ export default defineConfig({
       dts: 'typings/auto-imports.d.ts',
     }),
     UniRoot(),
+    uni(),
   ],
   css: {
     postcss: {

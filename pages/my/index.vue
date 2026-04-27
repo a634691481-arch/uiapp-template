@@ -1,6 +1,6 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
-    <view class="bg-gray-50 flex flex-col gap-3 p-3">
+    <view class="flex flex-col gap-3 p-3">
       <!-- 用户信息 -->
       <view class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
         <view class="size-12 bg-slate-200 rounded-full"></view>
@@ -19,7 +19,7 @@
       <!-- 金刚区 -->
       <view class="grid grid-cols-4 py-3 bg-white rounded-lg shadow-sm">
         <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.kingKongList" :key="item.name">
-          <Icon :icon="item.icon" class="size-6 text-[rgba(var(--u-type-primary-rgb),0.66)]" />
+          <l-icon :name="item.icon" size="24" color="rgba(var(--u-type-primary-rgb),0.66)" />
           <view class="text-xs text-gray-600">{{ item.name }}</view>
         </view>
       </view>
@@ -35,7 +35,7 @@
         </view>
         <view class="grid grid-cols-4 py-3">
           <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.order" :key="item.name">
-            <Icon :icon="item.icon" class="size-6 text-[rgba(var(--u-type-primary-rgb),0.66)]" />
+            <l-icon :name="item.icon" size="24" color="rgba(var(--u-type-primary-rgb),0.66)" />
             <view class="text-xs text-gray-600">{{ item.name }}</view>
           </view>
         </view>
@@ -49,7 +49,7 @@
           :key="k"
         >
           <view class="flex items-center gap-2">
-            <Icon :icon="i.icon" class="size-5 text-[rgba(var(--u-type-primary-rgb),0.66)]" />
+            <l-icon :name="i.icon" size="24" color="rgba(var(--u-type-primary-rgb),0.66)" />
             <view class="text-sm text-gray-700">{{ i.name }}</view>
           </view>
           <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
@@ -66,7 +66,6 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { Icon } from '@iconify/vue'
 
   const pagingConfig = ref({
     auto: false,

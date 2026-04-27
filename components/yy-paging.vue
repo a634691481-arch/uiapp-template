@@ -158,7 +158,8 @@
     // 列表背景色，默认浅灰
     bgColor: {
       type: String,
-      default: 'var(--u-bg-white)',
+      default: 'bg-gray-50 ',
+      // default: 'var(--u-bg-white)',
     },
     // 是否启用“加载更多”功能，默认 true
     loadingMoreEnabled: {

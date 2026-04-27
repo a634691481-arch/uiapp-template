@@ -4,7 +4,9 @@
       ///
       <view class="">55555 {{ $u.color.primary }}</view>
 
-      <view class="bg-[var(--u-type-primary)]">333333333</view>
+      <view class="bg-[var(--u-type-primary)]">/////</view>
+      <view class="titlee">titleetitleetitlee</view>
+      <view class="title">titleetitleetitleetitlee</view>
     </view>
   </yy-paging>
 </template>
@@ -20,9 +22,7 @@
     navTitle: '我的',
     // navBackground: '',
   })
-  import { useTheme } from '@/uni_modules/uview-pro'
-  const x = useTheme()
-  console.log('x==> ', x)
+ 
   const state = ref({
     isScroll: false,
     dataList: [],
@@ -32,7 +32,6 @@
 
   onLoad(options => {
     console.log('🚀 页面加载:', options)
-    console.log('res==> ', uni.$u.getColor('primary'))
   })
 
   onShow(options => {
@@ -49,4 +48,16 @@
   }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .title {
+    // color: $u-type-primary;
+    /* 或使�css 变量 */
+    color: var(--u-type-primary);
+  }
+
+  .titlee {
+    color: $u-type-primary;
+    /* 或使�css 变量 */
+    // color: var(--u-type-primary);
+  }
+</style>
