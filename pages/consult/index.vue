@@ -16,7 +16,8 @@
     showTabbar: true,
     hideNav: false,
     showNavBack: true,
-    navTitle: '页面标题',
+    navTitle: '我的',
+    // navBackground: '',
   })
 
   const state = ref({

@@ -1,19 +1,13 @@
 {
   "workbench.colorCustomizations": {
-    // 激活状态：低饱和度优雅紫
-    "tab.activeBackground": "#6B46C1",
-    "tab.activeForeground": "#FFFFFF",
-    // 列表选中状态：加深紫色
-    "list.activeSelectionBackground": "#553C9A",
-    "list.activeSelectionForeground": "#FFFFFF",
-    // 列表悬停状态：非常浅的丁香紫
-    // "list.hoverBackground": "#FAF5FF",
-    // "list.hoverForeground": "#6B46C1",
-    // 列表失焦选中状态：柔和的薰衣草色
-    "list.inactiveSelectionBackground": "#44337A",
-    "list.inactiveSelectionForeground": "#44337A",
-    "editorIndentGuide.background1": "#333333",
-    "editorIndentGuide.activeBackground1": "#a3a3a3"
+    "tab.activeBackground": "#339933",
+    "tab.activeForeground": "#ffffff",
+    "list.activeSelectionBackground": "#339933",
+    "list.activeSelectionForeground": "#ffffff",
+    "list.hoverBackground": "#339933",
+    "list.hoverForeground": "#ffffff",
+    "list.inactiveSelectionBackground": "#339933",
+    "list.inactiveSelectionForeground": "#ffffff",
   },
   // editor
   "editor.tabSize": 2,

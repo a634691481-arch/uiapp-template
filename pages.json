@@ -71,7 +71,7 @@
     "backgroundTextStyle": "@bgTxtStyle",
     "navigationBarBackgroundColor": "#000000",
     "navigationBarTextStyle": "@navTxtStyle",
-    "navigationBarTitleText": "uView Pro Starter",
+    "navigationBarTitleText": "@navTitle",
     "navigationStyle": "custom"
   },
   "tabBar": {
