@@ -3,7 +3,7 @@
     <view class="flex flex-col gap-3 p-3">
       <!-- 用户信息 -->
       <view class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
-        <view class="size-12 bg-slate-200 rounded-full"></view>
+        <view class="size-12 bg-[rgba(var(--u-type-primary-rgb),0.8)] rounded-full"></view>
         <view class="flex flex-col">
           <view class="text-base font-medium text-gray-900">昵称</view>
           <view class="text-xs text-gray-400 mt-0.5">账号: 18599996666</view>
@@ -11,16 +11,29 @@
       </view>
 
       <!-- 快捷核销 -->
-      <view class="flex gap-3 p-3 bg-white rounded-lg shadow-sm">
-        <u-button type="primary" plain size="small" class="flex-1">核销</u-button>
-        <u-button type="primary" plain size="small" class="flex-1">票根码核销</u-button>
-      </view>
+      <!-- <view class="grid grid-cols-2 gap-3 p-3 bg-white rounded-lg shadow-sm">
+        <view class="col-span-1">
+          <u-button type="primary" plain size="small" class="!flex-1 *:!w-full">核销</u-button>
+        </view>
+        <view class="col-span-1">
+          <u-button type="primary" plain size="small" class="!flex-1 *:!w-full">票根码核销</u-button>
+        </view>
+      </view> -->
 
       <!-- 金刚区 -->
-      <view class="grid grid-cols-4 py-3 bg-white rounded-lg shadow-sm">
-        <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.kingKongList" :key="item.name">
-          <l-icon :name="item.icon" size="24" color="rgba(var(--u-type-primary-rgb),0.66)" />
-          <view class="text-xs text-gray-600">{{ item.name }}</view>
+      <view class="flex flex-col overflow-hidden bg-white rounded-lg shadow-sm">
+        <view class="flex items-center justify-between p-3 border-b border-gray-100">
+          <view class="text-sm font-medium text-gray-900">管理中心</view>
+          <view class="flex items-center text-xs text-gray-400">
+            全部
+            <u-icon name="arrow-right" size="22" class="ml-0.5 align-middle"></u-icon>
+          </view>
+        </view>
+        <view class="grid grid-cols-4 py-3">
+          <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.kingKongList" :key="item.name">
+            <zero-icon :name="item.icon" size="24" :color="pagingConfig.color" />
+            <view class="text-xs text-gray-600">{{ item.name }}</view>
+          </view>
         </view>
       </view>
 
@@ -28,14 +41,14 @@
       <view class="flex flex-col overflow-hidden bg-white rounded-lg shadow-sm">
         <view class="flex items-center justify-between p-3 border-b border-gray-100">
           <view class="text-sm font-medium text-gray-900">我的订单</view>
-          <view class="flex items-center text-xs text-gray-400">
+          <view class="inline-flex items-center text-xs text-gray-400">
             全部
-            <u-icon name="arrow-right" size="22" class="ml-0.5"></u-icon>
+            <u-icon name="arrow-right" size="22" class="ml-0.5 !align-top"></u-icon>
           </view>
         </view>
         <view class="grid grid-cols-4 py-3">
           <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.order" :key="item.name">
-            <l-icon :name="item.icon" size="24" color="rgba(var(--u-type-primary-rgb),0.66)" />
+            <zero-icon :name="item.icon" size="24" :color="pagingConfig.color" />
             <view class="text-xs text-gray-600">{{ item.name }}</view>
           </view>
         </view>
@@ -49,7 +62,7 @@
           :key="k"
         >
           <view class="flex items-center gap-2">
-            <l-icon :name="i.icon" size="24" color="rgba(var(--u-type-primary-rgb),0.66)" />
+            <zero-icon :name="i.icon" size="24" :color="pagingConfig.color" />
             <view class="text-sm text-gray-700">{{ i.name }}</view>
           </view>
           <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
@@ -65,7 +78,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
 
   const pagingConfig = ref({
     auto: false,
@@ -75,6 +88,7 @@
     hideNav: false,
     showNavBack: true,
     navTitle: '我的',
+    color: uni.$u.color.primary,
   })
 
   const state = ref({
@@ -130,4 +144,8 @@
   }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .ddd {
+    color: rgba(var(--u-type-primary-rgb), 0.15) !important;
+  }
+</style>

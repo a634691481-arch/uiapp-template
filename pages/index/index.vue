@@ -1,13 +1,6 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
-    <view class="flex-col gap-3 p-3">
-      ///
-      <view class="">55555 {{ $u.color.primary }}</view>
-
-      <view class="bg-[var(--u-type-primary)]">/////</view>
-      <view class="titlee">titleetitleetitlee</view>
-      <view class="title">titleetitleetitleetitlee</view>
-    </view>
+    <view class="flex-col gap-3 p-3"></view>
   </yy-paging>
 </template>
 
@@ -19,10 +12,11 @@
     showTabbar: true,
     hideNav: false,
     showNavBack: true,
-    navTitle: '我的',
+    navTitle: '首页',
     // navBackground: '',
+    color: uni.$u.color.primary,
   })
- 
+
   const state = ref({
     isScroll: false,
     dataList: [],
@@ -51,13 +45,13 @@
 <style lang="scss" scoped>
   .title {
     // color: $u-type-primary;
-    /* 或使�css 变量 */
+    /* 或使�css 变量 */
     color: var(--u-type-primary);
   }
 
   .titlee {
     color: $u-type-primary;
-    /* 或使�css 变量 */
+    /* 或使�css 变量 */
     // color: var(--u-type-primary);
   }
 </style>

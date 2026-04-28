@@ -1,10 +1,6 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
-    <view class="flex-col gap-3 p-3">
-      <u-button type="primary" :color="$u.color.primary">提交</u-button>
-      <u-button type="primary" :color="$u.color.primary">提交</u-button>
-      <u-button type="primary" :color="$u.color.primary">提交</u-button>
-    </view>
+    <view class="flex-col gap-3 p-3"></view>
   </yy-paging>
 </template>
 
@@ -16,8 +12,9 @@
     showTabbar: true,
     hideNav: false,
     showNavBack: true,
-    navTitle: '我的',
+    navTitle: '旅游',
     // navBackground: '',
+    color: uni.$u.color.primary,
   })
 
   const state = ref({
