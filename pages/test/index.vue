@@ -15,6 +15,8 @@
     navTitle: '我的',
     // navBackground: '',
     color: uni.$u.color.primary,
+    // loadingMoreNoMoreText: '',
+    // emptyText: '',
   })
 
   const state = ref({

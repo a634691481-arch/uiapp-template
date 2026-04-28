@@ -2,11 +2,20 @@
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
     <view class="flex flex-col gap-3 p-3">
       <!-- 用户信息 -->
-      <view class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
-        <view class="size-12 bg-[rgba(var(--u-type-primary-rgb),0.8)] rounded-full"></view>
-        <view class="flex flex-col">
-          <view class="text-base font-medium text-gray-900">昵称</view>
-          <view class="text-xs text-gray-400 mt-0.5">账号: 18599996666</view>
+      <view class="flex items-center justify-between gap-3 p-3 rounded-lg">
+        <view class="flex items-center gap-2">
+          <view class="size-14 bg-[rgba(var(--u-type-primary-rgb),0.8)] rounded-full"></view>
+          <view class="flex flex-col">
+            <view class="text-base font-medium text-gray-900">昵称</view>
+            <view class="text-xs text-gray-400 mt-0.5">账号: 18599996666</view>
+          </view>
+        </view>
+        <view
+          class="size-8 flex items-center justify-center rounded-lg"
+          style="background-color: rgba(var(--u-type-primary-rgb), 0.05)"
+          @click="navigateTo('/pages/my/profile')"
+        >
+          <zero-icon name="ri:arrow-right-s-line" size="20" :color="pagingConfig.color"></zero-icon>
         </view>
       </view>
 
@@ -115,6 +124,7 @@
     showNavBack: true,
     navTitle: '我的',
     color: uni.$u.color.primary,
+    loadingMoreNoMoreText: '',
   })
 
   const state = ref({
