@@ -78,7 +78,7 @@ description: 基于 Uni-App + Vue3 项目规范创建新页面。当用户需要
 
   async function queryList(page, limit) {
     // 模拟请求
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 100))
     paging.value?.complete([1])
   }
 </script>

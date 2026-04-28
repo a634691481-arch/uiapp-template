@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="flex flex-col items-center justify-center" @click="reloadClick">
+    <view v-if="text" class="flex flex-col items-center justify-center" @click="reloadClick">
       <view class="w-[30vw]" :style="{ 'margin-top': margin }">
         <u-image mode="widthFix" :src="url"></u-image>
       </view>
@@ -14,16 +14,16 @@
   const props = defineProps({
     url: {
       type: String,
-      default: '/static/20251107162321.png'
+      default: '/static/20251107162321.png',
     },
     text: {
       type: String,
-      default: '暂无数据~'
+      default: '暂无数据~',
     },
     margin: {
       type: String,
-      default: '5vh'
-    }
+      default: '5vh',
+    },
   })
 
   // 定义 emits

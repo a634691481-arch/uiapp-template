@@ -2,9 +2,9 @@
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
     <template #top>
       <view class="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm">
-        <view class="text-xs text-gray-400">如需帮助，请选择以下咨询方式</view>
-        <view>
-          <u-button type="primary" plain size="mini" @click="showExplain = true">服务说明</u-button>
+        <view class="text-xs text-gray-400">订单服务由本平台提供</view>
+        <view class="">
+          <u-button type="primary" plain size="mini" @click="showExplain = true">开票说明</u-button>
         </view>
       </view>
     </template>
@@ -15,7 +15,7 @@
           class="last:border-b-0 active:bg-gray-50 flex items-center justify-between px-3 py-3 transition-colors border-b border-gray-100"
           v-for="(item, index) in state.menuList"
           :key="index"
-          @click="navigateTo(item)"
+          @click="navigateTo(item.url)"
         >
           <view class="flex items-center gap-3">
             <view
@@ -31,16 +31,16 @@
       </view>
     </view>
 
-    <!-- 服务说明弹窗 -->
+    <!-- 开票说明弹窗 -->
     <u-popup v-model="showExplain" mode="center" border-radius="16" width="80%">
       <view class="p-4">
-        <view class="text-base font-medium text-center text-gray-900">咨询服务说明</view>
+        <view class="text-base font-medium text-center text-gray-900">开票说明</view>
         <view class="flex flex-col gap-1 mt-3 text-sm leading-relaxed text-gray-600">
-          <view>1. 广西12345投诉热线：政府官方投诉渠道，处理各类政务投诉</view>
-          <view>2. 在线客服：平台专属客服，7×24小时在线解答</view>
-          <view>3. 平台热线：400客服电话，服务时间 9:00-21:00</view>
-          <view>4. 12345旅游在线投诉：专门针对旅游纠纷的投诉通道</view>
-          <view>5. 巩固服务地图：查看附近服务网点及联系方式</view>
+          <view>1. 发票类型支持电子普通发票和增值税专用发票</view>
+          <view>2. 订单完成后可申请开票，开票金额以实际支付金额为准</view>
+          <view>3. 电子发票将在申请后 1-3 个工作日内发送至您的邮箱</view>
+          <view>4. 发票内容默认为旅游服务费，如有特殊需求请联系客服</view>
+          <view>5. 发票抬头信息可在「发票抬头」页面提前维护</view>
         </view>
         <u-button type="primary" class="mt-4" @click="showExplain = false">我知道了</u-button>
       </view>
@@ -53,10 +53,10 @@
     auto: false,
     refresherEnabled: false,
     showRefresherWhenReload: false,
-    showTabbar: true,
+    showTabbar: false,
     hideNav: false,
     showNavBack: true,
-    navTitle: '咨询中心',
+    navTitle: '发票中心',
     color: uni.$u.color.primary,
   })
 
@@ -66,11 +66,15 @@
     isScroll: false,
     dataList: [],
     menuList: [
-      { name: '广西12345投诉热线', icon: 'ri:phone-line', type: 'phone', value: '12345' },
-      { name: '在线客服', icon: 'ri:customer-service-2-line', type: 'page', url: '' },
-      { name: '平台热线', icon: 'ri:customer-service-line', type: 'phone', value: '400-888-8888' },
-      { name: '12345旅游在线投诉', icon: 'ri:file-list-3-line', type: 'page', url: '' },
-      { name: '巩固服务地图', icon: 'ri:map-pin-line', type: 'page', url: '' },
+      { name: '景点发票', icon: 'ri:landscape-line', url: '' },
+      { name: '团购发票', icon: 'ri:group-line', url: '' },
+      { name: '路线发票', icon: 'ri:map-pin-line', url: '' },
+      { name: '特产发票', icon: 'ri:shopping-bag-line', url: '' },
+      { name: '组合发票', icon: 'ri:stack-line', url: '' },
+
+      { name: '发票历史', icon: 'ri:file-list-3-line', url: '' },
+      { name: '发票抬头', icon: 'ri:bank-card-line', url: '' },
+      { name: '咨询客服', icon: 'ri:customer-service-2-line', url: '' },
     ],
   })
 
@@ -88,16 +92,12 @@
     state.value.isScroll = e.detail.scrollTop > 0
   }
 
-  function navigateTo(item) {
-    if (item.type === 'phone') {
-      uni.makePhoneCall({ phoneNumber: item.value })
-      return
-    }
-    if (!item.url) {
+  function navigateTo(url) {
+    if (!url) {
       uni.showToast({ title: '功能开发中', icon: 'none' })
       return
     }
-    vk.navigateTo(item.url)
+    vk.navigateTo(url)
   }
 
   async function queryList(page, limit) {

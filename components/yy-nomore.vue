@@ -1,6 +1,6 @@
 <!-- z-paging自定义的没有更多数据view -->
 <template>
-  <view class="flex flex-col items-center pb-2">
+  <view class="flex flex-col items-center pb-2" v-if="text">
     <!-- 这里的图片请换成自己项目的图片 -->
     <text class="text-[.75rem] text-[#8E9299] mt-3">{{ text }}</text>
   </view>
@@ -10,8 +10,8 @@
   defineProps({
     text: {
       type: String,
-      default: '已经清澈见底啦~'
-    }
+      default: '已经清澈见底啦~',
+    },
   })
 </script>
 

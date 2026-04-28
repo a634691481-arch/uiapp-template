@@ -68,20 +68,74 @@
 - API 方法命名使用驼峰命名法（camelCase）
 - 每个 API 方法上方必须添加注释说明用途
 
-# 页面布局规范
+# 页面布局与 TailwindCSS 样式规范
 
-- 必须使用 Tailwind CSS 原子类进行布局（如 flex、items-center、w-full、p-4 等）
+## 页面根结构
+
+- 页面内容根容器统一使用：`flex flex-col gap-3 p-3`
+- 禁止在根容器直接使用 `m-*` 控制子元素间距，必须通过 `gap-*` 实现
+
+## 卡片模块
+
+- 功能模块/卡片统一使用：`flex flex-col overflow-hidden bg-white rounded-lg shadow-sm`
+- 卡片头部统一使用：`flex items-center justify-between p-3 border-b border-gray-100`
+- 卡片标题统一使用：`text-sm font-medium text-gray-900`
+- 卡片右侧操作区统一使用：`flex items-center text-xs text-gray-400`
+  - 操作文字后直接紧跟 `u-icon`，如：`全部 <u-icon name="arrow-right" size="22" class="ml-0.5 align-middle"></u-icon>`
+
+## 文字颜色层级
+
+- 主要标题/昵称：`text-base font-medium text-gray-900`
+- 模块标题：`text-sm font-medium text-gray-900`
+- 列表项名称：`text-sm text-gray-700`
+- 辅助说明文字：`text-xs text-gray-600`
+- 次要/提示文字：`text-xs text-gray-400`
+
+## 图标使用规范
+
+- 功能图标统一使用 `zero-icon`，尺寸 `size="24"`
+- 功能图标颜色统一通过 `:color="pagingConfig.color"` 传入主题主色（值为 `uni.$u.color.primary`）
+- 列表右侧箭头统一使用：`u-icon name="arrow-right" size="22" color="#ccc"`
+- 头部操作箭头统一使用：`u-icon name="arrow-right" size="22" class="ml-0.5 align-middle"`
+
+## 四列网格（金刚区/快捷入口）
+
+- 网格容器：`grid grid-cols-4 py-3`
+- 单项布局：`flex flex-col items-center justify-center gap-1`
+- 图标：`zero-icon size="24" :color="pagingConfig.color"`
+- 名称：`text-xs text-gray-600`
+
+## 功能列表
+
+- 列表容器：`flex flex-col overflow-hidden bg-white rounded-lg shadow-sm`
+- 列表项：`last:border-b-0 active:bg-gray-50 flex items-center justify-between px-3 py-3 transition-colors border-b border-gray-100`
+- 左侧内容：`flex items-center gap-2`
+  - 图标：`zero-icon size="24" :color="pagingConfig.color"`
+  - 文字：`text-sm text-gray-700`
+- 右侧箭头：`u-icon name="arrow-right" size="22" color="#ccc"`
+
+## 用户信息横排
+
+- 容器：`flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm`
+- 头像占位：`size-12 rounded-full`，背景按需使用主题色或 `bg-slate-200`
+- 信息区：`flex flex-col`
+  - 主信息：`text-base font-medium text-gray-900`
+  - 辅助信息：`text-xs text-gray-400 mt-0.5`
+
+## 间距与尺寸
+
+- 间距单位统一使用 `3`：`p-3`、`gap-3`、`px-3`、`py-3` 等
+- 子元素间距优先使用 `gap-*`，禁止使用 `m-*`（如 `mb-3`、`mr-2`）挤开元素
+- 等宽高使用 `size-*` 简化：`w-5 h-5` 应简化为 `size-5`
+
+## 颜色与主题
+
+- 主题色统一通过 `uni.$u.color.primary` 获取，禁止硬编码主题色
+- 卡片背景统一使用 `bg-white`
+- 边框统一使用 `border-gray-100`
+- 点击反馈统一使用 `active:bg-gray-50 transition-colors`
 - 复杂样式或自定义样式使用 SCSS 并添加 scoped
 - 避免内联样式，优先使用 Tailwind 类名
-- 页面根元素必须包含语义化 class
-- 响应式布局使用 Tailwind 响应式前缀（如 sm:、md:、lg:）
-- 颜色值使用 Tailwind 默认色板或自定义主题色
-
-# TailwindCSS 使用规范
-
-- **间距单位统一使用 `3`**：`p-3`、`m-3`、`gap-3`、`px-3`、`py-3` 等，3 单位在移动端显示刚好
-- **子元素间距优先使用 `gap-`**：不要使用 `m-`（如 `mb-3`、`mr-2`）去挤开元素，统一使用 `gap-3` 让父容器均匀分配间距
-- **等宽高使用 `size-` 简化**：`w-5 h-5` 应简化为 `size-5`，`w-10 h-10` 应简化为 `size-10`
 
 # 安全与最佳实践
 

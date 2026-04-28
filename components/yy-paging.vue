@@ -79,8 +79,9 @@
           title-width="350"
           :title-color="navTitleColor"
           :back-icon-color="backIconColor"
-        />
-        <!-- <slot name="top" /> -->
+        ></u-navbar>
+        <slot name="top" />
+        <!---->
       </template>
 
       <template #bottom>
@@ -110,7 +111,9 @@
       </template>
       <template #refresherF2>
         <view class="p-3">
-          <view class="flex items-center justify-center p-1 text-white bg-gray-800 rounded-md">松手可以进入二楼哦 (*╹▽╹*)</view>
+          <view class="flex items-center justify-center p-1 text-white bg-gray-800 rounded-md">
+            松手可以进入二楼哦 (*╹▽╹*)
+          </view>
         </view>
       </template>
 
@@ -132,7 +135,7 @@
     // 返回按钮颜色，默认 #000000
     backIconColor: {
       type: String,
-      default: '#000000',
+      default: '#fff',
     },
     // 返回按钮颜色，默认 #fff
     navTitleColor: {

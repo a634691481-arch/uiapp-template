@@ -24,14 +24,24 @@
       <view class="flex flex-col overflow-hidden bg-white rounded-lg shadow-sm">
         <view class="flex items-center justify-between p-3 border-b border-gray-100">
           <view class="text-sm font-medium text-gray-900">管理中心</view>
-          <view class="flex items-center text-xs text-gray-400">
+          <!-- <view class="flex items-center text-xs text-gray-400">
             全部
             <u-icon name="arrow-right" size="22" class="ml-0.5 align-middle"></u-icon>
-          </view>
+          </view> -->
         </view>
         <view class="grid grid-cols-4 py-3">
-          <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.kingKongList" :key="item.name">
-            <zero-icon :name="item.icon" size="24" :color="pagingConfig.color" />
+          <view
+            class="flex flex-col items-center justify-center gap-1.5"
+            v-for="item in state.kingKongList"
+            :key="item.name"
+            @click="navigateTo(item.url)"
+          >
+            <view
+              class="flex items-center justify-center rounded-lg"
+              style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
+            >
+              <zero-icon :name="item.icon" size="20" :color="pagingConfig.color" />
+            </view>
             <view class="text-xs text-gray-600">{{ item.name }}</view>
           </view>
         </view>
@@ -41,14 +51,24 @@
       <view class="flex flex-col overflow-hidden bg-white rounded-lg shadow-sm">
         <view class="flex items-center justify-between p-3 border-b border-gray-100">
           <view class="text-sm font-medium text-gray-900">我的订单</view>
-          <view class="inline-flex items-center text-xs text-gray-400">
+          <view class="inline-flex items-center text-xs text-gray-400" @click="navigateTo('/pages/my/order')">
             全部
             <u-icon name="arrow-right" size="22" class="ml-0.5 !align-top"></u-icon>
           </view>
         </view>
         <view class="grid grid-cols-4 py-3">
-          <view class="flex flex-col items-center justify-center gap-1" v-for="item in state.order" :key="item.name">
-            <zero-icon :name="item.icon" size="24" :color="pagingConfig.color" />
+          <view
+            class="flex flex-col items-center justify-center gap-1.5"
+            v-for="item in state.order"
+            :key="item.name"
+            @click="navigateTo(item.url)"
+          >
+            <view
+              class="flex items-center justify-center rounded-lg"
+              style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
+            >
+              <zero-icon :name="item.icon" size="20" :color="pagingConfig.color" />
+            </view>
             <view class="text-xs text-gray-600">{{ item.name }}</view>
           </view>
         </view>
@@ -60,9 +80,15 @@
           class="last:border-b-0 active:bg-gray-50 flex items-center justify-between px-3 py-3 transition-colors border-b border-gray-100"
           v-for="(i, k) in state.list"
           :key="k"
+          @click="navigateTo(i.url)"
         >
-          <view class="flex items-center gap-2">
-            <zero-icon :name="i.icon" size="24" :color="pagingConfig.color" />
+          <view class="flex items-center gap-3">
+            <view
+              class="flex items-center justify-center rounded-lg"
+              style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
+            >
+              <zero-icon :name="i.icon" size="20" :color="pagingConfig.color" />
+            </view>
             <view class="text-sm text-gray-700">{{ i.name }}</view>
           </view>
           <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
@@ -96,31 +122,32 @@
     dataList: [],
     avatarUrl: '',
     kingKongList: [
-      { name: '优惠券', icon: 'ri:coupon-3-line' },
-      { name: '我的年卡', icon: 'ri:vip-crown-line' },
-      { name: '我的预约', icon: 'ri:calendar-check-line' },
-      { name: '我的演艺', icon: 'ri:clapperboard-line' },
+      { name: '优惠券', icon: 'ri:coupon-3-line', url: '/pages/my/coupon' },
+      { name: '我的年卡', icon: 'ri:vip-crown-line', url: '/pages/my/year-card' },
+      { name: '我的预约', icon: 'ri:calendar-check-line', url: '/pages/my/appointment' },
+      { name: '我的演艺', icon: 'ri:clapperboard-line', url: '/pages/my/perform' },
     ],
 
     order: [
-      { name: '待支付', icon: 'ri:bank-card-line' },
-      { name: '待使用', icon: 'ri:checkbox-circle-line' },
-      { name: '退款', icon: 'ri:refund-line' },
-      { name: '售后/退换', icon: 'ri:customer-service-2-line' },
+      { name: '待支付', icon: 'ri:bank-card-line', url: '/pages/my/order' },
+      { name: '待使用', icon: 'ri:checkbox-circle-line', url: '/pages/my/order' },
+      { name: '退款', icon: 'ri:refund-line', url: '/pages/my/order' },
+      { name: '售后/退换', icon: 'ri:customer-service-2-line', url: '/pages/my/order' },
     ],
     list: [
-      { name: '一键定制', icon: 'ri:brush-line' },
-      { name: '青年权益卡', icon: 'ri:id-card-line' },
-      { name: '发票中心', icon: 'ri:bill-line' },
-      { name: '我的投诉', icon: 'ri:feedback-line' },
-      { name: '中奖记录', icon: 'ri:gift-line' },
-      { name: '我的收藏', icon: 'ri:star-line' },
-      { name: '我的消息', icon: 'ri:mail-line' },
-      { name: '出行人信息', icon: 'ri:team-line' },
-      { name: '隐私政策简要版', icon: 'ri:shield-user-line' },
-      { name: '个人信息收集清单', icon: 'ri:file-list-3-line' },
-      { name: '应用权限说明', icon: 'ri:settings-3-line' },
-      { name: '我要分销', icon: 'ri:share-line' },
+      { name: '我的积分', icon: 'ri:coin-line', url: '/pages/my/integral' },
+      { name: '一键定制', icon: 'ri:brush-line', url: '/pages/my/customization' },
+      { name: '青年权益卡', icon: 'ri:id-card-line', url: '/pages/my/youth-card' },
+      { name: '发票中心', icon: 'ri:bill-line', url: '/pages/my/invoice' },
+      { name: '我的投诉', icon: 'ri:feedback-line', url: '/pages/my/complaint' },
+      { name: '中奖记录', icon: 'ri:gift-line', url: '/pages/my/lottery-record' },
+      { name: '我的收藏', icon: 'ri:star-line', url: '/pages/my/favorite' },
+      { name: '我的消息', icon: 'ri:mail-line', url: '/pages/my/message' },
+      { name: '出行人信息', icon: 'ri:team-line', url: '/pages/my/traveler' },
+      { name: '隐私政策简要版', icon: 'ri:shield-user-line', url: '/pages/my/privacy-policy' },
+      { name: '个人信息收集清单', icon: 'ri:file-list-3-line', url: '/pages/my/personal-info' },
+      { name: '应用权限说明', icon: 'ri:settings-3-line', url: '/pages/my/app-permission' },
+      { name: '我要分销', icon: 'ri:share-line', url: '/pages/my/distribution' },
     ],
   })
 
@@ -134,12 +161,17 @@
     console.log('🚀 页面显示:', options)
   })
 
+  function navigateTo(url) {
+    console.log('🚀 ~ :150 ~ navigateTo ~ url:', url)
+    vk.navigateTo(url)
+  }
+
   function scroll(e) {
     state.value.isScroll = e.detail.scrollTop > 0
   }
 
   async function queryList(page, limit) {
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 100))
     paging.value?.complete([1])
   }
 </script>

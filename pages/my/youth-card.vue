@@ -1,6 +1,8 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
-    <view class="flex-col gap-3 p-3"></view>
+    <view class="flex-col gap-3 p-3">
+      <view class="p-3 bg-white rounded-lg">青年卡</view>
+    </view>
   </yy-paging>
 </template>
 
@@ -9,10 +11,10 @@
     auto: false,
     refresherEnabled: true,
     showRefresherWhenReload: true,
-    showTabbar: true,
+    showTabbar: false,
     hideNav: false,
     showNavBack: true,
-    navTitle: '我的',
+    navTitle: '青年卡',
     // navBackground: '',
     color: uni.$u.color.primary,
   })

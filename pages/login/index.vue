@@ -53,7 +53,7 @@
   }
 
   async function queryList(page, limit) {
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 100))
     paging.value?.complete([1])
   }
 </script>
