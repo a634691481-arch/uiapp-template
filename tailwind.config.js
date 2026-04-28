@@ -5,6 +5,7 @@ const resolve = p => {
 }
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   // 注意此处，一定要 `path.resolve` 一下, 传入绝对路径
   // 你要有其他目录，比如 components，也必须在这里，添加一下
   content: [

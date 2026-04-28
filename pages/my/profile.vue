@@ -1,43 +1,66 @@
 <template>
-  <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
-    <view class="flex flex-col gap-3 p-3">
-      <!-- 信息列表 -->
-      <view class="flex flex-col overflow-hidden bg-white rounded-lg shadow-sm">
-        <view
-          class="last:border-b-0 active:bg-gray-50 flex items-center justify-between px-3 py-3 transition-colors border-b border-gray-100"
-          v-for="(item, index) in state.infoList"
-          :key="index"
-          @click="handleItemClick(item)"
-        >
-          <view class="flex items-center gap-3">
-            <view
-              class="flex items-center justify-center rounded-lg"
-              style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
-            >
-              <zero-icon :name="item.icon" size="20" :color="pagingConfig.color" />
+  <view :class="{ dark: isDark }" class="h-full">
+    <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
+      <view class="flex flex-col gap-3 p-3">
+        <!-- 信息列表 -->
+        <view class="dark:bg-gray-900 flex flex-col overflow-hidden bg-white rounded-lg shadow-sm">
+          <view
+            class="last:border-b-0 active:bg-gray-50 dark:active:bg-gray-800 dark:border-gray-800 flex items-center justify-between px-3 py-3 transition-colors border-b border-gray-100"
+            v-for="(item, index) in state.infoList"
+            :key="index"
+            @click="handleItemClick(item)"
+          >
+            <view class="flex items-center gap-3">
+              <view
+                class="flex items-center justify-center rounded-lg"
+                style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
+              >
+                <zero-icon :name="item.icon" size="20" :color="pagingConfig.color" />
+              </view>
+              <view class="dark:text-gray-200 text-sm text-gray-700">{{ item.label }}</view>
             </view>
-            <view class="text-sm text-gray-700">{{ item.label }}</view>
-          </view>
-          <view class="flex items-center gap-1">
-            <view class="text-sm text-gray-400">{{ item.value || '未设置' }}</view>
-            <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
+            <view class="flex items-center gap-1">
+              <view class="dark:text-gray-500 text-sm text-gray-400">{{ item.value || '未设置' }}</view>
+              <u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </yy-paging>
+    </yy-paging>
 
-  <view class="fixed bottom-0 left-0 right-0 grid grid-cols-2 gap-2 p-3 bg-white border-t">
-    <view class="">
-      <u-button type="primary" @click="saveProfile">保存资料</u-button>
-    </view>
-    <view class="">
-      <u-button type="error" plain @click="logout">退出登录</u-button>
+    <!-- 主题选择弹窗 -->
+    <yy-theme-picker v-model="showThemePicker" :active-color="pagingConfig.color" @change="onThemeChange" />
+
+    <!-- 深色模式选择弹窗 -->
+    <yy-dark-mode-picker v-model="showDarkModePicker" :active-color="pagingConfig.color" @change="onDarkModeChange" />
+
+    <view
+      class="dark:bg-gray-900 dark:border-gray-800 fixed bottom-0 left-0 right-0 grid grid-cols-2 gap-2 p-3 bg-white border-t"
+    >
+      <view class="">
+        <u-button type="primary" @click="saveProfile">保存资料</u-button>
+      </view>
+      <view class="">
+        <u-button type="error" plain @click="logout">退出登录</u-button>
+      </view>
     </view>
   </view>
 </template>
 
 <script setup>
+  import { useTheme } from '@/uni_modules/uview-pro'
+
+  const { getCurrentTheme, darkMode } = useTheme()
+
+  const isDark = computed(() => {
+    if (darkMode.value === 'dark') return true
+    if (darkMode.value === 'light') return false
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+    return false
+  })
+
   const pagingConfig = ref({
     auto: false,
     refresherEnabled: true,
@@ -65,10 +88,14 @@
       { label: '生日', icon: 'ri:cake-line', value: '1995-08-15', field: 'birthday' },
       { label: '所在地区', icon: 'ri:map-pin-line', value: '广西壮族自治区 南宁市', field: 'region' },
       { label: '个性签名', icon: 'ri:edit-line', value: '探索世界，发现美好', field: 'signature' },
-      // 主题修改
       { label: '主题', icon: 'ri:palette-line', value: '默认主题', field: 'theme' },
+      // { label: '深色模式', icon: 'ri:moon-line', value: '关闭', field: 'darkMode' },
     ],
   })
+
+  const currentThemeName = ref('')
+  const showThemePicker = ref(false)
+  const showDarkModePicker = ref(false)
 
   const paging = ref()
 
@@ -78,6 +105,19 @@
 
   onShow(options => {
     console.log('🚀 页面显示:', options)
+    const theme = getCurrentTheme()
+    if (theme) {
+      currentThemeName.value = theme.name
+      const themeItem = state.value.infoList.find(i => i.field === 'theme')
+      if (themeItem) themeItem.value = theme.label
+    }
+    const { getDarkMode } = useTheme()
+    const darkMode = getDarkMode()
+    const darkModeItem = state.value.infoList.find(i => i.field === 'darkMode')
+    if (darkModeItem) {
+      const labelMap = { dark: '开启', auto: '自动', light: '关闭' }
+      darkModeItem.value = labelMap[darkMode] || '关闭'
+    }
   })
 
   function scroll(e) {
@@ -85,11 +125,33 @@
   }
 
   function handleItemClick(item) {
+    console.log('🚀 ~ :103 ~ handleItemClick ~ item:', item)
+    if (item.field === 'theme') {
+      showThemePicker.value = true
+      return
+    }
+    if (item.field === 'darkMode') {
+      showDarkModePicker.value = true
+      return
+    }
     uni.showToast({ title: `编辑${item.label}`, icon: 'none' })
   }
 
+  function onThemeChange(item) {
+    currentThemeName.value = item.name
+    const themeItem = state.value.infoList.find(i => i.field === 'theme')
+    if (themeItem) themeItem.value = item.label
+    vk.toast(`已切换为${item.label}`, 'none')
+  }
+
+  function onDarkModeChange(item) {
+    const darkModeItem = state.value.infoList.find(i => i.field === 'darkMode')
+    if (darkModeItem) darkModeItem.value = item.label
+    vk.toast(`已切换为${item.label}`, 'none')
+  }
+
   function saveProfile() {
-    uni.showToast({ title: '保存成功', icon: 'success' })
+    vk.toast('保存成功', 'none')
   }
 
   function logout() {
