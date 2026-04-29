@@ -94,7 +94,7 @@
 ## 图标使用规范
 
 - 功能图标统一使用 `zero-icon`，尺寸 `size="24"`
-- 功能图标颜色统一通过 `:color="pagingConfig.color"` 传入主题主色（值为 `uni.$u.color.primary`）
+- 功能图标颜色统一通过 `:color="uni.$u.color.primary"` 传入主题主色（值为 `uni.$u.color.primary`）
 - 列表右侧箭头统一使用：`u-icon name="arrow-right" size="22" color="#ccc"`
 - 头部操作箭头统一使用：`u-icon name="arrow-right" size="22" class="ml-0.5 align-middle"`
 
@@ -102,7 +102,7 @@
 
 - 网格容器：`grid grid-cols-4 py-3`
 - 单项布局：`flex flex-col items-center justify-center gap-1`
-- 图标：`zero-icon size="24" :color="pagingConfig.color"`
+- 图标：`zero-icon size="24" :color="uni.$u.color.primary"`
 - 名称：`text-xs text-gray-600`
 
 ## 功能列表
@@ -110,7 +110,7 @@
 - 列表容器：`flex flex-col overflow-hidden bg-white rounded-lg shadow-sm`
 - 列表项：`last:border-b-0 active:bg-gray-50 flex items-center justify-between px-3 py-3 transition-colors border-b border-gray-100`
 - 左侧内容：`flex items-center gap-2`
-  - 图标：`zero-icon size="24" :color="pagingConfig.color"`
+  - 图标：`zero-icon size="24" :color="uni.$u.color.primary"`
   - 文字：`text-sm text-gray-700`
 - 右侧箭头：`u-icon name="arrow-right" size="22" color="#ccc"`
 
