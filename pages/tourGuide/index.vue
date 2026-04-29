@@ -208,10 +208,13 @@
       console.log('🚀 ~ :208 ~ calcHeight ~ topHeight:', topHeight)
       const statusBarHeight = sysInfo.statusBarHeight // 状态栏高度
       console.log('🚀 ~ :210 ~ calcHeight ~ statusBarHeight:', statusBarHeight)
-      const navHeight = 48 // 导航栏高度
+      const navHeight = sysInfo.osName == 'ios' ? 48 : 48 // 安卓设定的导航栏高度为48px，iOS 设定的导航栏高度为44
+      console.log('🚀 ~ :212 ~ calcHeight ~ navHeight:', navHeight)
 
-      containerHeight.value = windowHeight - (topHeight + statusBarHeight + navHeight + statusBarHeight) + 'px'
-      // containerHeight.value = windowHeight + 'px'
+      const tabbarHegiht = statusBarHeight || 50 // 与 uni-app 自带系统导航栏高度一致   默认50px
+
+      containerHeight.value = windowHeight - (topHeight + statusBarHeight + navHeight + tabbarHegiht) + 'px'
+
       console.log('🚀 ~ :212 ~ calcHeight ~ containerHeight.value:', containerHeight.value)
     })
   }

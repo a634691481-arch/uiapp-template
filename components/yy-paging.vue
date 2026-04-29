@@ -84,6 +84,8 @@
     </template>
 
     <template #bottom>
+      <yy-tabbar v-if="showTabbar"></yy-tabbar>
+
       <slot name="bottom" />
     </template>
     <template #left>
@@ -123,8 +125,6 @@
     </template> -->
     <slot />
   </z-paging>
-
-  <yy-tabbar v-if="showTabbar"></yy-tabbar>
 </template>
 
 <script setup>
