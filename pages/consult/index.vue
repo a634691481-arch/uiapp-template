@@ -1,7 +1,7 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
     <template #top>
-      <view class="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm">
+      <view class="flex items-center justify-between p-3 bg-white shadow-sm">
         <view class="text-xs text-gray-400">如需帮助，请选择以下咨询方式</view>
         <view>
           <u-button type="primary" plain size="mini" @click="showExplain = true">服务说明</u-button>

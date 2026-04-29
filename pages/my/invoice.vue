@@ -1,7 +1,7 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
     <template #top>
-      <view class="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm">
+      <view class="flex items-center justify-between p-3 bg-white shadow-sm">
         <view class="text-xs text-gray-400">订单服务由本平台提供</view>
         <view class="">
           <u-button type="primary" plain size="mini" @click="showExplain = true">开票说明</u-button>
