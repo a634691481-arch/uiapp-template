@@ -29,11 +29,11 @@
         <view class="flex items-center justify-between gap-2 p-3 border-t border-gray-100">
           <view class=""></view>
           <view class="flex items-center gap-2">
-            <u-button v-if="item.status === 'pending'" size="mini">取消预约</u-button>
-            <u-button v-if="item.status === 'pending'" type="primary" size="mini">去使用</u-button>
+            <u-button v-if="item.status === 'pending'" size="mini" plain type="primary">取消预约</u-button>
+            <u-button v-if="item.status === 'pending'" type="primary" plain size="mini">去使用</u-button>
             <u-button v-if="item.status === 'completed'" type="primary" plain size="mini">再次预约</u-button>
             <u-button v-if="item.status === 'cancelled'" type="primary" plain size="mini">重新预约</u-button>
-            <u-button size="mini">查看详情</u-button>
+            <u-button size="mini" type="primary">查看详情</u-button>
           </view>
         </view>
       </view>

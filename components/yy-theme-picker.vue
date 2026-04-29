@@ -6,21 +6,23 @@
         <!-- <u-icon name="close" size="24" color="#999" @click="close"></u-icon> -->
         <zero-icon name="ri:close-line" size="24" color="#999" @click="close"></zero-icon>
       </view>
-      <scroll-view scroll-y class="flex flex-col gap-2 p-3">
-        <view
-          class="active:bg-gray-50 flex items-center justify-between p-3 rounded-md"
-          v-for="item in themes"
-          :key="item.name"
-          @click="selectTheme(item)"
-        >
-          <view class="flex items-center gap-3">
-            <view
-              class="w-6 h-6 border border-gray-200 rounded-full"
-              :style="{ backgroundColor: item.color.primary }"
-            ></view>
-            <view class="text-sm text-gray-700">{{ item.label }}</view>
+      <scroll-view scroll-y class="flex-1 w-full">
+        <view class="flex flex-col gap-1 p-3">
+          <view
+            class="active:bg-gray-50 flex items-center justify-between p-3 rounded-md"
+            v-for="item in themes"
+            :key="item.name"
+            @click="selectTheme(item)"
+          >
+            <view class="flex items-center gap-3">
+              <view
+                class="w-6 h-6 border border-gray-200 rounded-full"
+                :style="{ backgroundColor: item.color.primary }"
+              ></view>
+              <view class="text-sm text-gray-700">{{ item.label }}</view>
+            </view>
+            <zero-icon name="ri:check-line" size="20" :color="activeColor" v-if="currentThemeName === item.name" />
           </view>
-          <zero-icon name="ri:check-line" size="20" :color="activeColor" v-if="currentThemeName === item.name" />
         </view>
       </scroll-view>
     </view>

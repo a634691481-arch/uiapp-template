@@ -29,11 +29,11 @@
         <view class="flex items-center justify-between p-3 border-t border-gray-100">
           <view></view>
           <view class="flex items-center gap-2">
-            <u-button v-if="item.status === 'pending'" type="primary" size="mini">催促分配</u-button>
+            <u-button v-if="item.status === 'pending'" type="primary" plain size="mini">催促分配</u-button>
             <u-button v-if="item.status === 'serving'" type="primary" plain size="mini">联系客服</u-button>
             <u-button v-if="item.status === 'completed'" type="primary" plain size="mini">再次定制</u-button>
             <u-button v-if="item.status === 'cancelled'" type="primary" plain size="mini">重新定制</u-button>
-            <u-button size="mini">查看详情</u-button>
+            <u-button size="mini" type="primary">查看详情</u-button>
           </view>
         </view>
       </view>

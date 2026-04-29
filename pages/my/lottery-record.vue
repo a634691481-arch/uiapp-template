@@ -35,9 +35,9 @@
         <view class="flex items-center justify-between p-3 border-t border-gray-100">
           <view></view>
           <view class="flex items-center gap-2">
-            <u-button v-if="item.status === 'win'" type="primary" size="mini">立即领取</u-button>
+            <u-button v-if="item.status === 'win'" type="primary" plain size="mini">立即领取</u-button>
             <u-button v-if="item.status === 'received'" type="primary" plain size="mini">查看奖品</u-button>
-            <u-button size="mini">查看详情</u-button>
+            <u-button size="mini" type="primary">查看详情</u-button>
           </view>
         </view>
       </view>
