@@ -1,65 +1,64 @@
 <template>
-  <view class="yy-paging-container">
-    <z-paging
-      ref="paging"
-      :auto="auto"
-      :bgColor="bgColor"
-      v-model="list"
-      fixed
-      refresher-threshold="160rpx"
-      @query="queryList"
-      @onRefresh="onRefresh"
-      @scrolltolower="scrolltolower"
-      @scrollIntoViewById="scrollIntoViewById"
-      @scrollToTop="scrollToTop"
-      :useVirtualList="useVirtualList"
-      :useInnerList="useInnerList"
-      :cellKeyName="cellKeyName"
-      :innerListStyle="innerListStyle"
-      :cellHeightMode="cellHeightMode"
-      :virtualScrollFps="virtualScrollFps"
-      :show-refresher-when-reload="showRefresherWhenReload"
-      :loading-more-enabled="loadingMoreEnabled"
-      :use-page-scroll="usePageScroll"
-      created-reload
-      :preloadPage="preloadPage"
-      :refresherEnabled="refresherEnabled"
-      scroll-with-animation
-      :auto-hide-loading-after-first-loaded="true"
-      :loading-more-loading-text="{ en: '英文的加载中', 'zh-cn': '中文的加载中', 'zh-hant-cn': '繁体的加载中' }"
-      :empty-view-center="false"
-      loading-full-fixed
-      show-refresher-update-time
-      efresher-angle-enable-change-continued
-      auto-show-back-to-top
-      :safe-area-inset-bottom="false"
-      :use-safe-area-placeholder="false"
-    >
-      <!-- refresher-vibrate -->
-      <!--  -->
-      <!-- auto-show-system-loading -->
-      <!--  -->
-      <!-- auto-show-system-loading-->
-      <!-- loading-full-fixed -->
-      <!-- show-refresher-update-time-->
-      <!--  safe-area-inset-bottom -->
-      <!--  use-safe-area-placeholder  -->
-      <!-- loading-full-fixed -->
-      <!-- auto-show-system-loading  -->
-      <!-- show-refresher-when-reload -->
-      <!-- :preloadPage="preloadPage" -->
-      <!-- show-refresher-when-reload -->
-      <!-- :show-loading-more-no-more-template="true" -->
-      <!-- loading-full-fixed -->
-      <!-- auto-show-system-loading -->
-      <!-- system-loading-text="loading..." -->
-      <!-- scroll-with-animation 在设置滚动条位置时使用动画过渡 -->
-      <!-- inside-more 当分页未满一屏时，是否自动加载更多(nvue无效) -->
-      <!-- show-refresher-update-time 是否显示最后更新时间   -->
-      <!-- auto-show-back-to-top 自动显示点击返回顶部按钮 -->
-      <!-- refresher-f2-enabled  是否开启二楼 -->
-      <template #top>
-        <!-- <u-navbar
+  <z-paging
+    ref="paging"
+    :auto="auto"
+    :bgColor="bgColor"
+    v-model="list"
+    fixed
+    refresher-threshold="160rpx"
+    @query="queryList"
+    @onRefresh="onRefresh"
+    @scrolltolower="scrolltolower"
+    @scrollIntoViewById="scrollIntoViewById"
+    @scrollToTop="scrollToTop"
+    :useVirtualList="useVirtualList"
+    :useInnerList="useInnerList"
+    :cellKeyName="cellKeyName"
+    :innerListStyle="innerListStyle"
+    :cellHeightMode="cellHeightMode"
+    :virtualScrollFps="virtualScrollFps"
+    :show-refresher-when-reload="showRefresherWhenReload"
+    :loading-more-enabled="loadingMoreEnabled"
+    :use-page-scroll="usePageScroll"
+    created-reload
+    :preloadPage="preloadPage"
+    :refresherEnabled="refresherEnabled"
+    scroll-with-animation
+    :auto-hide-loading-after-first-loaded="true"
+    :loading-more-loading-text="{ en: '英文的加载中', 'zh-cn': '中文的加载中', 'zh-hant-cn': '繁体的加载中' }"
+    :empty-view-center="false"
+    loading-full-fixed
+    show-refresher-update-time
+    efresher-angle-enable-change-continued
+    auto-show-back-to-top
+    :safe-area-inset-bottom="false"
+    :use-safe-area-placeholder="false"
+  >
+    <!-- refresher-vibrate -->
+    <!--  -->
+    <!-- auto-show-system-loading -->
+    <!--  -->
+    <!-- auto-show-system-loading-->
+    <!-- loading-full-fixed -->
+    <!-- show-refresher-update-time-->
+    <!--  safe-area-inset-bottom -->
+    <!--  use-safe-area-placeholder  -->
+    <!-- loading-full-fixed -->
+    <!-- auto-show-system-loading  -->
+    <!-- show-refresher-when-reload -->
+    <!-- :preloadPage="preloadPage" -->
+    <!-- show-refresher-when-reload -->
+    <!-- :show-loading-more-no-more-template="true" -->
+    <!-- loading-full-fixed -->
+    <!-- auto-show-system-loading -->
+    <!-- system-loading-text="loading..." -->
+    <!-- scroll-with-animation 在设置滚动条位置时使用动画过渡 -->
+    <!-- inside-more 当分页未满一屏时，是否自动加载更多(nvue无效) -->
+    <!-- show-refresher-update-time 是否显示最后更新时间   -->
+    <!-- auto-show-back-to-top 自动显示点击返回顶部按钮 -->
+    <!-- refresher-f2-enabled  是否开启二楼 -->
+    <template #top>
+      <!-- <u-navbar
           :background="{ backgroundColor: state.isScroll ? '#fff' : '#fff' }"
           :title="state.title"
           :border-bottom="false"
@@ -68,64 +67,64 @@
           backIconColor="#000"
         ></u-navbar> -->
 
-        <u-navbar
-          v-if="!hideNav"
-          :is-back="showNavBack && !showTabbar"
-          :title="navTitle"
-          :background="navBackground"
-          :is-fixed="true"
-          :immersive="false"
-          back-icon-name="arrow-leftward"
-          title-width="350"
-          :title-color="navTitleColor"
-          :back-icon-color="backIconColor"
-        ></u-navbar>
-        <slot name="top" />
-        <!---->
-      </template>
+      <u-navbar
+        v-if="!hideNav"
+        :is-back="showNavBack && !showTabbar"
+        :title="navTitle"
+        :background="navBackground"
+        :is-fixed="true"
+        :immersive="false"
+        back-icon-name="arrow-leftward"
+        title-width="350"
+        :title-color="navTitleColor"
+        :back-icon-color="backIconColor"
+      ></u-navbar>
+      <slot name="top" />
+      <!---->
+    </template>
 
-      <template #bottom>
-        <yy-tabbar v-if="showTabbar"></yy-tabbar>
-        <slot name="bottom" />
-      </template>
-      <template #left>
-        <slot name="left" />
-      </template>
-      <template #right>
-        <slot name="right" />
-      </template>
-      <template #loading>
-        <!-- <tasi-loading></tasi-loading> -->
-      </template>
+    <template #bottom>
+      <slot name="bottom" />
+    </template>
+    <template #left>
+      <slot name="left" />
+    </template>
+    <template #right>
+      <slot name="right" />
+    </template>
+    <template #loading>
+      <!-- <tasi-loading></tasi-loading> -->
+    </template>
 
-      <template #empty>
-        <!-- <slot name="empty" /> -->
-        <yy-empty :text="emptyText"></yy-empty>
-      </template>
-      <template #cell="{ item, index }">
-        <slot name="cell" :item="item" :index="index" />
-      </template>
-      <template #loadingMoreNoMore>
-        <!-- <slot name="loadingMoreNoMore" /> -->
-        <yy-nomore :text="loadingMoreNoMoreText"></yy-nomore>
-      </template>
-      <template #refresherF2>
-        <view class="p-3">
-          <view class="flex items-center justify-center p-1 text-white bg-gray-800 rounded-md">
-            松手可以进入二楼哦 (*╹▽╹*)
-          </view>
+    <template #empty>
+      <!-- <slot name="empty" /> -->
+      <yy-empty :text="emptyText"></yy-empty>
+    </template>
+    <template #cell="{ item, index }">
+      <slot name="cell" :item="item" :index="index" />
+    </template>
+    <template #loadingMoreNoMore>
+      <!-- <slot name="loadingMoreNoMore" /> -->
+      <yy-nomore :text="loadingMoreNoMoreText"></yy-nomore>
+    </template>
+    <template #refresherF2>
+      <view class="p-3">
+        <view class="flex items-center justify-center p-1 text-white bg-gray-800 rounded-md">
+          松手可以进入二楼哦 (*╹▽╹*)
         </view>
-      </template>
+      </view>
+    </template>
 
-      <template #f2>
-        <slot name="f2" />
-      </template>
-      <!-- <template #refresher="{ refresherStatus }">
+    <template #f2>
+      <slot name="f2" />
+    </template>
+    <!-- <template #refresher="{ refresherStatus }">
       <tasi-refresher :status="refresherStatus" />
     </template> -->
-      <slot />
-    </z-paging>
-  </view>
+    <slot />
+  </z-paging>
+
+  <yy-tabbar v-if="showTabbar"></yy-tabbar>
 </template>
 
 <script setup>
