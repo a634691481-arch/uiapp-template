@@ -63,8 +63,8 @@
 
   const pagingConfig = ref({
     auto: false,
-    refresherEnabled: true,
-    showRefresherWhenReload: true,
+    refresherEnabled: false,
+    showRefresherWhenReload: false,
     showTabbar: false,
     hideNav: false,
     showNavBack: true,
