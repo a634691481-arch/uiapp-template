@@ -3,13 +3,20 @@
     <template #top>
       <view class="flex flex-col gap-2 p-3 pb-0 bg-white">
         <u-search v-model="state.keyword" placeholder="搜索抽奖记录" :show-action="false" @search="onSearch"></u-search>
-        <u-subsection
+        <!-- <u-subsection
           :list="state.categoryList"
           :current="state.currentCategory"
           @change="onCategoryChange"
           mode="button"
           active-color="var(--u-type-primary)"
-        ></u-subsection>
+        ></u-subsection> -->
+
+        <u-tabs
+          :list="state.categoryList"
+          :is-scroll="false"
+          :current="state.currentCategory"
+          @change="onCategoryChange"
+        ></u-tabs>
       </view>
     </template>
     <view class="flex flex-col gap-3 p-3">
