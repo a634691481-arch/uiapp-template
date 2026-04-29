@@ -38,13 +38,22 @@
                             class="u-tabbar__content__circle__border"
                             :style="{ backgroundColor: props.bgColor }"
                         ></view>
-                        <u-icon
+                        <!-- <u-icon
                             :size="getIconSize(index)"
                             :name="elIconPath(index)"
                             img-mode="scaleToFill"
                             :color="elColor(index)"
                             :custom-prefix="getCustomPrefix(index)"
-                        ></u-icon>
+                        ></u-icon> -->
+                          <zero-icon
+                            size="20"
+                            :name="elIconPath(index)" 
+                            :color="elColor(index)"
+                            img-mode="scaleToFill"
+                          </zero-icon>
+                          
+
+
                         <u-badge
                             :count="item.count"
                             :is-dot="item.isDot"
