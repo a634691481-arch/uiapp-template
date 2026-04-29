@@ -11,27 +11,26 @@ export default {
     // tabbar 列表配置
     list: tabbar.list || [
       {
-        iconPath: 'home',
-        selectedIconPath: 'home-fill',
+        iconPath: 'ri:home-smile-2-line',
+        selectedIconPath: 'ri:home-smile-2-fill',
         text: '首页',
         pagePath: '/pages/index/index',
       },
-
       {
-        iconPath: 'grid',
-        selectedIconPath: 'grid-fill',
+        iconPath: 'ri:compass-3-line',
+        selectedIconPath: 'ri:compass-3-fill',
         text: '旅游',
         pagePath: '/pages/tourGuide/index',
       },
       {
-        iconPath: 'chat',
-        selectedIconPath: 'chat-fill',
+        iconPath: 'ri:chat-smile-2-line',
+        selectedIconPath: 'ri:chat-smile-2-fill',
         text: '咨询',
         pagePath: '/pages/consult/index',
       },
       {
-        iconPath: 'account',
-        selectedIconPath: 'account-fill',
+        iconPath: 'ri:user-smile-line',
+        selectedIconPath: 'ri:user-smile-fill',
         text: '我的',
         pagePath: '/pages/my/index',
       },
