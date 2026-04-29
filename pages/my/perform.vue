@@ -24,7 +24,7 @@
         </view>
         <view class="flex gap-3 p-3">
           <view class="size-20 bg-slate-200 flex-shrink-0 overflow-hidden rounded-lg">
-            <u-image src="https://picsum.photos/200/300" class="!size-20"></u-image>
+            <u-image src="https://picsum.photos/200/300" class="!size-20" width="100%" height="100%"></u-image>
           </view>
           <view class="flex flex-col justify-between flex-1">
             <view class="text-sm text-gray-900">{{ item.title }}</view>
@@ -41,9 +41,9 @@
             <text class="text-sm font-medium text-gray-900">¥{{ item.total }}</text>
           </view>
           <view class="flex gap-2">
-            <u-button v-if="item.status === 'unpaid'" type="primary" size="mini">去支付</u-button>
+            <u-button v-if="item.status === 'unpaid'" type="primary" plain size="mini">去支付</u-button>
             <u-button v-if="item.status === 'unused'" type="primary" plain size="mini">去使用</u-button>
-            <u-button size="mini">查看详情</u-button>
+            <u-button size="mini" type="primary">查看详情</u-button>
           </view>
         </view>
       </view>
