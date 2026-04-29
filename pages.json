@@ -214,20 +214,16 @@
 		"borderStyle": "@tabBorderStyle",
 		"list": [
 			{
-				"pagePath": "pages/index/index",
-				"text": ""
+				"pagePath": "pages/index/index"
 			},
 			{
-				"pagePath": "pages/tourGuide/index",
-				"text": ""
+				"pagePath": "pages/tourGuide/index"
 			},
 			{
-				"pagePath": "pages/consult/index",
-				"text": ""
+				"pagePath": "pages/consult/index"
 			},
 			{
-				"pagePath": "pages/my/index",
-				"text": ""
+				"pagePath": "pages/my/index"
 			}
 		]
 	}
