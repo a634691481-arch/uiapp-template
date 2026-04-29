@@ -18,7 +18,7 @@
         </view>
         <view class="flex gap-3 p-3">
           <view class="size-20 bg-slate-200 flex-shrink-0 overflow-hidden rounded-lg">
-            <u-image src="https://picsum.photos/200/300" class="!size-20"></u-image>
+            <u-image src="https://picsum.photos/200/300" class="!size-20" width="100%" height="100%"></u-image>
           </view>
           <view class="flex flex-col justify-between flex-1">
             <view class="text-sm text-gray-900">{{ item.title }}</view>
