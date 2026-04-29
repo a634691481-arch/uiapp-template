@@ -7,7 +7,7 @@
       </view>
     </view>
     <view class="flex flex-col gap-3 p-3">
-      <view class="flex flex-col gap-3 p-3 overflow-hidden bg-white rounded-lg shadow-sm">
+      <view class="flex flex-col gap-3 p-3 overflow-hidden bg-white shadow-sm">
         <view class="flex items-center gap-3">
           <view class="flex-shrink-0 w-16 text-sm text-gray-700">手机号码</view>
           <u-input
