@@ -14,12 +14,12 @@
       >
         <view class="flex gap-3 p-3">
           <view class="size-24 bg-slate-200 flex-shrink-0 overflow-hidden rounded-lg">
-            <u-image src="https://picsum.photos/200/300" class="!size-24"></u-image>
+            <u-image src="https://picsum.photos/200/300" class="!size-24" width="100%" height="100%"></u-image>
           </view>
           <view class="flex flex-col justify-between flex-1">
             <view>
               <view class="text-sm font-medium text-gray-900">{{ item.title }}</view>
-              <view class="mt-1 text-xs text-gray-400 line-clamp-2">{{ item.desc }}</view>
+              <view class="line-clamp-2 mt-1 text-xs text-gray-400">{{ item.desc }}</view>
             </view>
             <view class="flex items-center justify-between mt-2">
               <view class="text-sm font-bold text-gray-900">{{ item.price ? '¥' + item.price : item.tag }}</view>
