@@ -1,13 +1,13 @@
 <template>
   <yy-paging v-model="state.dataList" @query="queryList" ref="paging" @scroll="scroll" v-bind="pagingConfig">
     <view class="">
-      <view class="flex flex-col gap-1 p-3 bg-white rounded-lg">
+      <view class="flex flex-col gap-1 p-3 bg-white">
         <view class="text-sm font-medium text-gray-900">分销申请</view>
         <view class="text-xs text-gray-500">请填写以下信息开通分销权限</view>
       </view>
     </view>
     <view class="flex flex-col gap-3 p-3">
-      <view class="flex flex-col gap-3 p-3 overflow-hidden bg-white shadow-sm">
+      <view class="flex flex-col gap-3 p-3 overflow-hidden bg-white rounded-lg shadow-sm">
         <view class="flex items-center gap-3">
           <view class="flex-shrink-0 w-16 text-sm text-gray-700">手机号码</view>
           <u-input
