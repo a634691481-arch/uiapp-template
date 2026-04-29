@@ -12,6 +12,9 @@
         v-for="(item, index) in state.dataList"
         :key="index"
       >
+        <!-- <view class="absolute top-0 right-0">
+          <u-tag :text="item.statusText" :type="item.statusType" size="mini"></u-tag>
+        </view> -->
         <!-- 左侧色带 -->
         <view class="flex-shrink-0 w-2" :class="item.status === 'unused' ? 'bg-red-500' : 'bg-gray-300'"></view>
         <view class="flex items-center flex-1 gap-3 p-3">
@@ -28,7 +31,7 @@
             <view class="text-xs text-gray-400">{{ item.scope }}</view>
           </view>
           <view class="flex flex-col items-center justify-center flex-shrink-0 gap-2">
-            <u-tag :text="item.statusText" :type="item.statusType" size="mini"></u-tag>
+            <!-- -->
             <u-button v-if="item.status === 'unused'" size="mini" type="primary">去使用</u-button>
           </view>
         </view>
