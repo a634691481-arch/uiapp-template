@@ -50,7 +50,7 @@
 
 <script setup>
   const pagingConfig = ref({
-    auto: false,
+    auto: true,
     refresherEnabled: false,
     showRefresherWhenReload: false,
     showTabbar: true,
@@ -58,6 +58,8 @@
     showNavBack: true,
     navTitle: '咨询中心',
     color: uni.$u.color.primary,
+    loadingMoreNoMoreText: '',
+    emptyText: '',
   })
 
   const showExplain = ref(false)
@@ -101,7 +103,9 @@
   }
 
   async function queryList(page, limit) {
-    paging.value?.complete([])
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
+    paging.value?.complete([1])
   }
 </script>
 
