@@ -4,9 +4,7 @@
       <!-- 用户信息 -->
       <view class="flex items-center justify-between gap-3 p-3 rounded-lg">
         <view class="flex items-center gap-2">
-          <view
-            class="size-14 bg-[rgba(var(--u-type-primary-rgb),0.8)] rounded-full ring-2 ring-gray-300 overflow-hidden"
-          >
+          <view class="size-14 ring-2 ring-gray-300 overflow-hidden bg-gray-100 rounded-full">
             <u-image
               src="https://picsum.photos/200/300"
               width="100%"
