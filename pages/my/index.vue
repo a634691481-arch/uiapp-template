@@ -4,7 +4,18 @@
       <!-- 用户信息 -->
       <view class="flex items-center justify-between gap-3 p-3 rounded-lg">
         <view class="flex items-center gap-2">
-          <view class="size-14 bg-[rgba(var(--u-type-primary-rgb),0.8)] rounded-full"></view>
+          <view
+            class="size-14 bg-[rgba(var(--u-type-primary-rgb),0.8)] rounded-full ring-2 ring-gray-300 overflow-hidden"
+          >
+            <u-image
+              src="https://picsum.photos/200/300"
+              width="100%"
+              height="100%"
+              class="!size-full"
+              mode="aspectFill"
+            ></u-image>
+          </view>
+
           <view class="flex flex-col">
             <view class="text-base font-medium text-gray-900">昵称</view>
             <view class="text-xs text-gray-400 mt-0.5">账号: 18599996666</view>
@@ -15,7 +26,7 @@
           style="background-color: rgba(var(--u-type-primary-rgb), 0.05)"
           @click="navigateTo('/pages/my/profile')"
         >
-          <zero-icon name="ri:arrow-right-s-line" size="20" :color="pagingConfig.color"></zero-icon>
+          <zero-icon name="ri:arrow-right-s-line" size="20" :color="uni.$u.color.primary"></zero-icon>
         </view>
       </view>
 
@@ -49,7 +60,7 @@
               class="flex items-center justify-center rounded-lg"
               style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
             >
-              <zero-icon :name="item.icon" size="20" :color="pagingConfig.color" />
+              <zero-icon :name="item.icon" size="20" :color="uni.$u.color.primary" />
             </view>
             <view class="text-xs text-gray-600">{{ item.name }}</view>
           </view>
@@ -76,7 +87,7 @@
               class="flex items-center justify-center rounded-lg"
               style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
             >
-              <zero-icon :name="item.icon" size="20" :color="pagingConfig.color" />
+              <zero-icon :name="item.icon" size="20" :color="uni.$u.color.primary" />
             </view>
             <view class="text-xs text-gray-600">{{ item.name }}</view>
           </view>
@@ -96,7 +107,7 @@
               class="flex items-center justify-center rounded-lg"
               style="width: 36px; height: 36px; background-color: rgba(var(--u-type-primary-rgb), 0.1)"
             >
-              <zero-icon :name="i.icon" size="20" :color="pagingConfig.color" />
+              <zero-icon :name="i.icon" size="20" :color="uni.$u.color.primary" />
             </view>
             <view class="text-sm text-gray-700">{{ i.name }}</view>
           </view>
