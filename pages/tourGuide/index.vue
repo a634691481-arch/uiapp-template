@@ -201,21 +201,20 @@
     query.select('#top-bar').boundingClientRect()
     query.exec(res => {
       const sysInfo = uni.getSystemInfoSync()
-      console.log('🚀 ~ :202 ~ calcHeight ~ sysInfo:', sysInfo)
+      console.log('🚀 ~ :204 ~ calcHeight ~ sysInfo:', sysInfo)
       const windowHeight = sysInfo.windowHeight
 
-      const topHeight = res[0]?.height || 0 // 内容高度
-      console.log('🚀 ~ :208 ~ calcHeight ~ topHeight:', topHeight)
-      const statusBarHeight = sysInfo.statusBarHeight // 状态栏高度
-      console.log('🚀 ~ :210 ~ calcHeight ~ statusBarHeight:', statusBarHeight)
-      const navHeight = sysInfo.osName == 'ios' ? 48 : 48 // 安卓设定的导航栏高度为48px，iOS 设定的导航栏高度为44
-      console.log('🚀 ~ :212 ~ calcHeight ~ navHeight:', navHeight)
+      const topHeight = res[0]?.height || 0
+      const statusBarHeight = sysInfo.statusBarHeight || 0
+      // iOS 导航栏标准高度 44px，Android 及小程序为 48px
+      const navHeight = sysInfo.osName === 'ios' ? 44 : 48
+      const tabbarHeight = 50
+      // 全面屏设备底部安全区高度（如 iPhone X 的 Home Indicator），非全面屏为 0
+      const safeAreaBottom = sysInfo.safeAreaInsets?.bottom
+      const faultTolerantPx = 4
 
-      const tabbarHegiht = statusBarHeight || 50 // 与 uni-app 自带系统导航栏高度一致   默认50px
-
-      containerHeight.value = windowHeight - (topHeight + statusBarHeight + navHeight + tabbarHegiht) + 'px'
-
-      console.log('🚀 ~ :212 ~ calcHeight ~ containerHeight.value:', containerHeight.value)
+      containerHeight.value =
+        windowHeight - (topHeight + statusBarHeight + navHeight + tabbarHeight + safeAreaBottom + faultTolerantPx) + 'px'
     })
   }
 
